@@ -1,0 +1,485 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, acronym, address, code, del, dfn, em, img, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+blockquote, q {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    quotes: "" "";
+}
+blockquote:before, q:before, blockquote:after, q:after {
+    content: "";
+}
+
+th, td, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+}
+
+a img {
+    border: none;
+}
+
+.more-toggle {
+    cursor: pointer;
+}
+
+body.bp .clear {
+    clear: both;
+}
+body.bp .nowrap {
+    white-space: nowrap;
+}
+body.bp .clearfix {
+    overflow: hidden;
+    display: inline-block;
+}
+body.bp .clearfix {
+    display: block;
+}
+body.bp .small {
+    font-size: .8em;
+    margin-bottom: 1.875em;
+    line-height: 1.875em;
+}
+body.bp .large {
+    font-size: 1.2em;
+    line-height: 2.5em;
+    margin-bottom: 1.25em;
+}
+body.bp .first {
+    margin-left: 0;
+    padding-left: 0;
+}
+body.bp .last {
+    margin-right: 0;
+    padding-right: 0;
+}
+body.bp .top {
+    margin-top: 0;
+    padding-top: 0;
+}
+body.bp .bottom {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+body.bp .box {
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    background: #E5ECF9;
+}
+body.bp div.border {
+    padding-right: 4px;
+    margin-right: 5px;
+    border-right: 1px solid #eeeeee;
+}
+body.bp div.colborder {
+    padding-right: 24px;
+    margin-right: 25px;
+    border-right: 1px solid #eeeeee;
+}
+body.bp hr {
+    background: #dddddd;
+    color: #dddddd;
+    clear: both;
+    float: none;
+    width: 100%;
+    height: .1em;
+    margin: 0 0 1.45em;
+    border: none;
+}
+body.bp hr.space {
+    background: #dddddd;
+    color: #dddddd;
+    clear: both;
+    float: none;
+    width: 100%;
+    height: .1em;
+    margin: 0 0 1.45em;
+    border: none;
+    background: #fff;
+    color: #fff;
+}
+body.bp .showgrid {
+    background: url('/static/images/grid.png');
+}
+body.bp .error {
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #dddddd;
+    background: #fbe3e4;
+    color: #8a1f11;
+    border-color: #fbc2c4;
+}
+body.bp .error a {
+    color: #8a1f11;
+}
+body.bp .notice {
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #dddddd;
+    background: #fff6bf;
+    color: #514721;
+    border-color: #ffd324;
+}
+body.bp .notice a {
+    color: #514721;
+}
+body.bp .success {
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #dddddd;
+    background: #e6efc2;
+    color: #264409;
+    border-color: #c6d880;
+}
+body.bp .success a {
+    color: #264409;
+}
+body.bp .hide {
+    display: none;
+}
+body.bp .highlight {
+    background: yellow;
+}
+body.bp .added {
+    background: #006600;
+    color: white;
+}
+body.bp .removed {
+    background: #990000;
+    color: white;
+}
+
+form.bp label {
+    font-weight: bold;
+}
+form.bp fieldset {
+    padding: 1.4em;
+    margin: 0 0 1.5em 0;
+}
+form.bp legend {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+form.bp input.text, form.bp input.title, form.bp input[type=text] {
+    margin: 0.5em 0;
+    background-color: #fff;
+    padding: 5px;
+}
+form.bp input.title {
+    font-size: 1.5em;
+}
+form.bp input[type=checkbox], form.bp input.checkbox, form.bp input[type=radio], form.bp input.radio {
+    position: relative;
+    top: 0.25em;
+}
+form.bp textarea {
+    margin: 0.5em 0;
+    padding: 5px;
+}
+form.bp select {
+    margin: 0.5em 0;
+}
+form.bp fieldset {
+    border: 1px solid #cccccc;
+}
+form.bp input.text, form.bp input.title, form.bp textarea, form.bp select {
+    border: 1px solid #bbbbbb;
+}
+form.bp input.text:focus, form.bp input.title:focus, form.bp textarea:focus, form.bp select:focus {
+    border: 1px solid #666666;
+}
+form.bp input.text, form.bp input.title {
+    width: 300px;
+}
+form.bp textarea {
+    width: 390px;
+    height: 250px;
+}
+
+body {
+    font-family: Arial, Helvetica;
+    font-size: 1em;
+}
+
+#header {
+    background-color: #2e3436;
+    color: white;
+    padding: 2em 2em 0 2em;
+}
+    #header h1 {
+        font-size: 1.6em;
+        font-weight: bold;
+        letter-spacing: -1px;
+    }
+    #header .header_menu {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+        #header .header_menu li {
+            float: right;
+        }
+            #header .header_menu li a {
+                text-decoration: none;
+                display: block;
+                padding: 0em 1em;
+            }
+            #header .header_menu li a:hover {
+                background-color: #e74c00;
+                -moz-border-radius: 5px;
+            }
+
+.calendar table {
+    margin: 0 auto;
+}
+    .calendar thead {
+        background-color: #e74c00;
+        color: white;
+    }
+        .calendar thead th {
+            padding: .5em 1em;
+        }
+    .calendar td {
+        padding: .3em .7em;
+        height: 100px;
+        width: 14%;
+        border-right: 1px dotted #ddd;
+        border-bottom: 1px dotted #ccc;
+    }
+        .calendar td:first-child {
+            width: 2%;
+            border-color: #aaa;
+            background-color: #eee;
+        }
+    .calendar .issues {
+        background-color: #2e3436;
+    }
+        .calendar .issues .calendar_daynumber {
+            color: #61caff;
+            text-shadow: -1px -1px 0 #000;
+        }
+        .calendar .issues a {
+            color: white;
+            text-decoration: none;
+        }
+        .calendar .issues .calendar_issues_resolved a {
+            text-decoration: line-through;
+        }
+
+    .calendar_header {
+        padding: .3em 2em 2em 2em;
+        background-color: #2e3436;
+        color: white;
+    }
+        .calendar_header h2 {
+            font-size: 1.2em;
+            letter-spacing: -1px;
+        }
+        .calendar_header .calendar_menu {
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+
+    .calendar_daywrapper {
+        text-align: right;
+        position: relative;
+        height: 100%;
+    }
+        .calendar_daywrapper .calendar_issueslist {
+            position: relative;
+            text-align: left;
+            font-size: .7em;
+            color: #2e3436;
+            margin: 0 0 0 10px;
+        }
+        .calendar_daywrapper .calendar_daynumber {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 3em;
+            color: #ececec;
+        }
+
+    .calendar_weeknumber {
+        color: #ccc;
+        font-size: 2em;
+        text-shadow: -1px -1px 0 #fff;
+        letter-spacing: -4px;
+    }
+
+.next:after {
+    content: '➠';
+    padding-left: 1em;
+}
+
+.prev:before {
+    content: '➠';
+    padding-left: 1em;
+    -moz-transform: rotate(180deg);
+}
+
+.cal {
+    border-collapse: collapse;
+}
+
+#content .statuses {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    overflow: hidden;
+    display: inline-block;
+    border-bottom: 1px solid silver;
+}
+#content .statuses {
+    display: block;
+}
+    #content .statuses li {
+        list-style-type: none;
+        margin-left: 0px;
+        white-space: nowrap;
+        display: inline;
+        float: left;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+        #content .statuses li.first {
+            padding-left: 0px;
+        }
+        #content .statuses li.last {
+            padding-right: 0px;
+        }
+    #content .statuses li {
+        display: inline;
+        float: left;
+        margin-right: 10px;
+        width: 310px;
+        padding: 0 !important;
+        font-weight: bold;
+    }
+    * html #content .statuses li {
+        overflow-x: hidden;
+    }
+    #content .statuses li.status {
+        display: inline;
+        float: left;
+        margin-right: 10px;
+        width: 110px;
+    }
+    * html #content .statuses li.status {
+        overflow-x: hidden;
+    }
+    #content .statuses li.last {
+        display: inline;
+        float: left;
+        margin-right: 0;
+        width: 110px;
+    }
+    * html #content .statuses li.last {
+        overflow-x: hidden;
+    }
+#content ul.issues {
+    list-style: none;
+}
+    #content ul.issues li {
+        position: relative;
+        border-bottom: 1px solid silver;
+    }
+    #content ul.issues li .key {
+        font-weight: bold;
+        line-height: 35px;
+        font-size: 1.5em;
+    }
+    #content ul.issues li .title {
+        vertical-align: baseline;
+    }
+    #content ul.issues li .more {
+        display: none;
+        padding-right: 620px;
+    }
+    #content ul.issues li .marker {
+        position: absolute;
+        line-height: 35px;
+        display: block;
+        width: 100px;
+        height: 33px;
+        margin-top: 1px;
+        background-image: url('/static/images/blue-pushpin.png'), url('/static/images/msmarker.shadow.png');
+        background-repeat: no-repeat;
+        background-position: 5px, 0px;
+        padding-left: 44px;
+        top: 0;
+        left: 100px;
+    }
+    #content ul.issues li.overdue .marker {
+        background-image: url('/static/images/red-pushpin.png'), url('/static/images/msmarker.shadow.png');
+    }
+    #content ul.issues li.s10007 .marker {
+        left: 296px;
+    }
+    #content ul.issues li.s10008 .marker {
+        left: 416px;
+    }
+    #content ul.issues li.s10009 .marker {
+        left: 536px;
+    }
+    #content ul.issues li.s10012 .marker {
+        left: 656px;
+    }
+    #content ul.issues li.s10006 .marker {
+        left: 776px;
+    }
+
+#content ul.rolled li .marker, #content ul.failed li .marker {
+    display: none !important;
+}

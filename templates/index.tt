@@ -1,0 +1,59 @@
+<ul class="statuses">
+    <li><span>&nbsp;</span></li>
+    [% FOREACH status IN statuses %]
+    <li class="status [% status.id %][% IF loop.last() %] last[% END %]">[% status.name %]</li>
+    [% END %]
+</ul>
+<ul class="issues">
+    [% FOREACH issue IN issues %]
+    <li class="s[% issue.status.id %][% IF issue.overdue %] overdue[% END %]" id="[% issue.key %]">
+        <span class="key more-toggle">[% issue.key %]</span>
+        <span class="title more-toggle">[% issue.summary.substr(0,40) %]</span>
+        <span class="marker">[% issue.assignee %]</span>
+        <dl class="more">
+            [% FOREACH f IN ['summary', 'updated', 'assignee', 'reporter'] %]
+            <dt class="[% f %]">[% f | ucfirst %]</dt>
+            <dd>[% issue.$f %]</dd>
+            [% END %]
+            <dt class="links">Links</dt>
+            <dd><a class="jira" href="https://bugs.startsiden.no/browse/[% issue.key %]">JIRA</a></dd>
+        </dl>
+    </li>
+    [% END %]
+</ul>
+<h2>Recently failed releases</h2>
+<ul class="issues failed">
+    [% FOREACH issue IN failed %]
+    <li class="s[% issue.status.id %][% IF issue.overdue %] overdue[% END %]" id="[% issue.key %]">
+        <span class="key more-toggle">[% issue.key %]</span>
+        <span class="title more-toggle">[% issue.summary.substr(0,40) %]</span>
+        <span class="marker">[% issue.assignee %]</span>
+        <dl class="more">
+            [% FOREACH f IN ['summary', 'updated', 'assignee', 'reporter'] %]
+            <dt class="[% f %]">[% f | ucfirst %]</dt>
+            <dd>[% issue.$f %]</dd>
+            [% END %]
+            <dt class="links">Links</dt>
+            <dd><a class="jira" href="https://bugs.startsiden.no/browse/[% issue.key %]">JIRA</a></dd>
+        </dl>
+    </li>
+    [% END %]
+</ul>
+<h2>Recently rolled out releases</h2>
+<ul class="issues rolled">
+    [% FOREACH issue IN rolled %]
+    <li class="s[% issue.status.id %][% IF issue.overdue %] overdue[% END %]" id="[% issue.key %]">
+        <span class="key more-toggle">[% issue.key %]</span>
+        <span class="title more-toggle">[% issue.summary.substr(0,40) %]</span>
+        <span class="marker">[% issue.assignee %]</span>
+        <dl class="more">
+            [% FOREACH f IN ['summary', 'updated', 'assignee', 'reporter'] %]
+            <dt class="[% f %]">[% f | ucfirst %]</dt>
+            <dd>[% issue.$f %]</dd>
+            [% END %]
+            <dt class="links">Links</dt>
+            <dd><a class="jira" href="https://bugs.startsiden.no/browse/[% issue.key %]">JIRA</a></dd>
+        </dl>
+    </li>
+    [% END %]
+</ul>
