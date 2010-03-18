@@ -3,6 +3,9 @@ package JIRA::Status::Web::Application;
 use Moose;
 extends 'Tatsumaki::Application';
 
+use YAML;
+use Path::Class::File;
+
 has 'view' => (
     isa => 'Object',
     is => 'ro',
@@ -32,8 +35,30 @@ sub model {
 has 'config' => (
     isa => 'HashRef',
     is => 'rw',
+    builder => '_load_config',
+    lazy => 1,
 );
 
+sub _load_config {
+
+    # need to locate the damn config-file
+    my $pkg = __PACKAGE__;
+    $pkg =~ s|::|/|g;
+    $pkg .= ".pm";
+    my $pm_file = $INC{$pkg};
+    die "Could not locate PM-file: $pm_file" unless ($pm_file and -f $pm_file);
+    my $dir = Path::Class::File->new($pm_file)->parent;
+    my $file;
+    while ($dir->parent and $dir->parent ne $dir) {
+        if (-f $dir->file('config.yml')) {
+            $file = $dir->file('config.yml');
+            last;
+        }
+        $dir = $dir->parent;
+    }
+    warn "reading config from: $file";
+    my $cfg = YAML::LoadFile($file);
+}
 =pod
 around BUILDARGS => sub {
     my $orig = shift;
