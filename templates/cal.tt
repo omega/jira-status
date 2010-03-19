@@ -3,8 +3,8 @@
         <h2>[% date.month_name %] [% date.year %]</h2>
         <div class="calendar_menu">
             <ul>
-                <li><a class="next" href="/cal?month=[% next.strftime('%Y%m') %]">Next month</a></li>
-                <li><a class="prev" href="/cal?month=[% prev.strftime('%Y%m') %]">Prev month</a></li>
+                <li><a class="next" href="[% c.uri_for('/cal', { month => next.strftime('%Y%m') } ) %]">Next month</a></li>
+                <li><a class="prev" href="[% c.uri_for('/cal', { month => prev.strftime('%Y%m') } ) %]">Prev month</a></li>
             </ul>
         </div>
     </div>

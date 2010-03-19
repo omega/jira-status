@@ -3,11 +3,11 @@
 <head>
     <title>JIRA Status web-app</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <script src="/static/js/more.js"></script>
-    <link href="/static/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="/static/css/print.css" media="print" rel="stylesheet" type="text/css" />
+    <script src="[% c.uri_for('/static/js/more.js') %]"></script>
+    <link href="[% c.uri_for('/static/css/screen.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="[% c.uri_for('/static/css/print.css') %]" media="print" rel="stylesheet" type="text/css" />
     <!--[if lt IE 8]>
-        <link href="/static/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <link href="[% c.uri_for('/static/css/ie.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
 </head>
 <body id="index">
@@ -16,8 +16,8 @@
             <h1>JIRA Status web-app</h1>
             <div class="header_menu">
                 <ul>
-                    <li><a href="/cal">Calendar</a></li>
-                    <li><a href="/">Progress</a></li>
+                    <li><a href="[% c.uri_for('/cal') %]">Calendar</a></li>
+                    <li><a href="[% c.uri_for('/') %]">Progress</a></li>
                 </ul>
             </div>
         </div>
