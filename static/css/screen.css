@@ -267,26 +267,36 @@ body {
     }
         #header .header_menu li {
             float: right;
+            list-style: none;
         }
             #header .header_menu li a {
                 text-decoration: none;
                 display: block;
                 padding: 0em 1em;
+                color: white;
             }
             #header .header_menu li a:hover {
                 background-color: #e74c00;
                 -moz-border-radius: 5px;
             }
 
+.calendar {
+    position: relative;
+}
 .calendar table {
     margin: 0 auto;
 }
     .calendar thead {
         background-color: #e74c00;
         color: white;
+        -moz-box-shadow: silver -5px 5px 5px;
+        -webkit-box-shadow: silver -5px 5px 5px;
+                box-shadow: silver -5px 5px 5px;
+        overflow: clip;
     }
         .calendar thead th {
             padding: .5em 1em;
+            text-align: center;
         }
     .calendar td {
         padding: .3em .7em;
@@ -299,7 +309,18 @@ body {
             width: 2%;
             border-color: #aaa;
             background-color: #eee;
+            -moz-box-shadow: silver 5px 0px 5px;
+            -webkit-box-shadow: silver 5px 0px 5px;
+                    box-shadow: silver 5px 0px 5px;
+            
         }
+        .calendar td.today {
+            background-color: #eee;
+        }
+            .calendar td.today .calendar_daynumber {
+                text-shadow: 1-px -1px 0 white;
+                color: #e74c00;
+            }
     .calendar .issues {
         background-color: #2e3436;
     }
@@ -326,8 +347,22 @@ body {
         }
         .calendar_header .calendar_menu {
             position: absolute;
-            top: 20px;
-            right: 0;
+            top: 0px;
+            right: 10px;
+        }
+        .calendar .calendar_menu li {
+            float: right;
+            list-style: none;
+        }
+        .calendar .calendar_menu li a {
+            text-decoration: none;
+            display: block;
+            padding: 0em 1em;
+            color: white;
+        }
+        .calendar .calendar_menu li a:hover {
+            background-color: #e74c00;
+            -moz-border-radius: 5px;
         }
 
     .calendar_daywrapper {
