@@ -73,6 +73,8 @@ sub _locate_root_folder {
     }
    $dir; 
 }
+has '+static_path' => (default => sub { shift->_root_folder->subdir('static')->stringify });
+
 =pod
 around BUILDARGS => sub {
     my $orig = shift;
