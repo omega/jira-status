@@ -10,7 +10,7 @@ sub model {
 sub uri_for {
     my($self, $path, $args) = @_;
     my $uri = $self->request->base;
-    $path =~ s|^/||;
+    $path =~ s|^/|| if $uri =~ m|/$|;
     
     $uri->path($uri->path . $path);
     $uri->query_form($args) if $args;
