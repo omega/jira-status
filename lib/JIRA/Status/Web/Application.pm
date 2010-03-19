@@ -3,9 +3,10 @@ package JIRA::Status::Web::Application;
 use Moose;
 extends 'Tatsumaki::Application';
 
-use YAML;
-use Path::Class::File;
+use Config::JFDI;
 
+use Path::Class::File;
+use MooseX::Types::Path::Class;
 has 'view' => (
     isa => 'Object',
     is => 'ro',
@@ -40,24 +41,37 @@ has 'config' => (
 );
 
 sub _load_config {
-
+    
     # need to locate the damn config-file
+    
+    my $root = shift->_root_folder;
+    Config::JFDI->open(name => 'config', path => $root->stringify, path_to => $root->stringify)
+        or croak("Could not load config file");
+}
+
+has '_root_folder' => (
+    isa => 'Path::Class::Dir',
+    coerce => 1,
+    is => 'ro',
+    builder => '_locate_root_folder'
+);
+
+sub _locate_root_folder {
     my $pkg = __PACKAGE__;
     $pkg =~ s|::|/|g;
     $pkg .= ".pm";
     my $pm_file = $INC{$pkg};
     die "Could not locate PM-file: $pm_file" unless ($pm_file and -f $pm_file);
     my $dir = Path::Class::File->new($pm_file)->parent;
-    my $file;
+    my $root_folder;
     while ($dir->parent and $dir->parent ne $dir) {
-        if (-f $dir->file('config.yml')) {
-            $file = $dir->file('config.yml');
+        if (-d $dir->subdir('lib') and -d $dir->subdir('static')) {
+            $root_folder = $dir;
             last;
         }
         $dir = $dir->parent;
     }
-    warn "reading config from: $file";
-    my $cfg = YAML::LoadFile($file);
+   $dir; 
 }
 =pod
 around BUILDARGS => sub {
