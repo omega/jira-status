@@ -327,7 +327,6 @@ body {
             background-position: left center;
             background-repeat: no-repeat;
             display: block;
-            -moz-background-size: 50%;
         }
 
         .statuses li.s10000 span {
