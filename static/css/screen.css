@@ -242,7 +242,8 @@ body {
     overflow: hidden;
     display: inline-block;
     border-bottom: 1px solid silver;
-    font-size: 0.9em;
+    font-size: 0.7em;
+    font-weight: normal;
     line-height: 35px;
     background-color: #E74C00;
     color: white;
@@ -271,7 +272,7 @@ body {
         overflow-x: hidden;
     }
         #content .statuses li.first {
-            padding-left: 0px;
+            padding-left: 0.5em;
         }
         #content .statuses li.last {
             padding-right: 0px;
@@ -291,6 +292,33 @@ body {
     * html #content .statuses li.last {
         overflow-x: hidden;
     }
+        .statuses li span {
+            padding-left: 40px;
+            background-position: left center;
+            background-repeat: no-repeat;
+            display: block;
+            -moz-background-size: 50%;
+        }
+
+        .statuses li.s10000 span {
+            background-image: url('../images/statuses/in-planning.png');
+        }
+        .statuses li.s10007 span {
+            background-image: url('../images/statuses/in-development.png');
+        }
+        .statuses li.s10008 span {
+            background-image: url('../images/statuses/ready-for-qa.png');
+        }
+        .statuses li.s10009 span {
+            background-image: url('../images/statuses/in-qa.png');
+        }
+        .statuses li.s10012 span {
+            background-image: url('../images/statuses/sugg-qa-fail.png');
+        }
+        .statuses li.s10006 span {
+            background-image: url('../images/statuses/ready-for-prod.png');
+        }
+        
 #content ul.issues {
     list-style: none;
 }
@@ -333,8 +361,8 @@ body {
         margin-top: 1px;
         background-image: url('../images/blue-pushpin.png'), url('../images/msmarker.shadow.png');
         background-repeat: no-repeat;
-        background-position: 5px, 0px;
-        padding-left: 44px;
+        background-position: left center;
+        padding-left: 40px;
         top: 0;
         left: 100px;
     }

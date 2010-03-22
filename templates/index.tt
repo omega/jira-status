@@ -1,7 +1,7 @@
 <ul class="statuses">
     <li><span>&nbsp;</span></li>
     [% FOREACH status IN statuses %]
-    <li class="status [% status.id %][% IF loop.last() %] last[% END %]">[% status.name %]</li>
+    <li class="status s[% status.id %][% IF loop.last() %] last[% END %]"><span>[% status.name %]<span></li>
     [% END %]
 </ul>
 <ul class="issues">
