@@ -332,7 +332,7 @@ body {
         width: 100px;
         height: 33px;
         margin-top: 1px;
-        background-image: url('/static/images/blue-pushpin.png'), url('/static/images/msmarker.shadow.png');
+        background-image: url('../images/blue-pushpin.png'), url('../images/msmarker.shadow.png');
         background-repeat: no-repeat;
         background-position: 5px, 0px;
         padding-left: 44px;
@@ -340,7 +340,7 @@ body {
         left: 100px;
     }
     #content ul.issues li.overdue .marker {
-        background-image: url('/static/images/red-pushpin.png'), url('/static/images/msmarker.shadow.png');
+        background-image: url('../images/red-pushpin.png'), url('../images/msmarker.shadow.png');
     }
     #content ul.issues li.s10000 .marker {
         left: 30%;
