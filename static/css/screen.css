@@ -158,7 +158,36 @@ body {
         .calendar .issues a {
             color: white;
             text-decoration: none;
+            padding-left: 22px;
+            background-position: left top;
+            background-repeat: no-repeat;
+            display: block;
+            -moz-background-size: 20px;
+            background-size: 20px;
+            display: block;
+            padding-top: 1px;
+            min-height: 22px;
+            text-align: bottom;
         }
+            .calendar li.s10000 a {
+                background-image: url('../images/statuses/in-planning.png');
+            }
+            .calendar li.s10007 a {
+                background-image: url('../images/statuses/in-development.png');
+            }
+            .calendar li.s10008 a {
+                background-image: url('../images/statuses/ready-for-qa.png');
+            }
+            .calendar li.s10009 a {
+                background-image: url('../images/statuses/in-qa.png');
+            }
+            .calendar li.s10012 a {
+                background-image: url('../images/statuses/sugg-qa-fail.png');
+            }
+            .calendar li.s10006 a {
+                background-image: url('../images/statuses/ready-for-prod.png');
+            }
+            
         .calendar .issues .calendar_issues_resolved a {
             text-decoration: line-through;
         }
@@ -202,7 +231,8 @@ body {
             text-align: left;
             font-size: .7em;
             color: #2e3436;
-            margin: 0 0 0 10px;
+            margin: 0;
+            list-style: none;
         }
         .calendar_daywrapper .calendar_daynumber {
             position: absolute;

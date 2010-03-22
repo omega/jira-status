@@ -30,7 +30,7 @@
                         [% IF day_issues %]
                         <ul class="calendar_issueslist">
                             [% FOREACH issue IN day_issues %]
-                            <li class="[% IF issue.resolution %] calendar_issues_resolved[% END %]">
+                            <li class="[% IF issue.resolution %] calendar_issues_resolved[% END %] s[% issue.status.id %]">
                                 <a class="calendar_issues_jira" href="https://bugs.startsiden.no/browse/[% issue.key %]">[% issue.summary %]</a>
                             </li>
                             [% END %]
