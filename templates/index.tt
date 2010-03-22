@@ -8,7 +8,7 @@
     [% FOREACH issue IN issues %]
     <li class="s[% issue.status.id %][% IF issue.overdue %] overdue[% END %]" id="[% issue.key %]">
         <span class="key more-toggle">[% issue.key %]</span>
-        <span class="title more-toggle">[% issue.summary.substr(0,40) %]</span>
+        <span class="title more-toggle">[% issue.summary.substr(0,35) %]</span>
         <span class="marker">[% issue.assignee %]</span>
         <dl class="more">
             [% FOREACH f IN ['summary', 'updated', 'assignee', 'reporter'] %]
@@ -21,7 +21,7 @@
     </li>
     [% END %]
 </ul>
-<h2>Recently failed releases</h2>
+<h3>Recently failed releases</h2>
 <ul class="issues failed">
     [% FOREACH issue IN failed %]
     <li class="s[% issue.status.id %][% IF issue.overdue %] overdue[% END %]" id="[% issue.key %]">
@@ -39,7 +39,7 @@
     </li>
     [% END %]
 </ul>
-<h2>Recently rolled out releases</h2>
+<h3>Recently rolled out releases</h2>
 <ul class="issues rolled">
     [% FOREACH issue IN rolled %]
     <li class="s[% issue.status.id %][% IF issue.overdue %] overdue[% END %]" id="[% issue.key %]">

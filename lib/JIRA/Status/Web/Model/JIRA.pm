@@ -107,7 +107,7 @@ sub get_status_list {
     my $self = shift;
     # XXX: This is hardcoded because I can't seem to find a way to find the statuses from
     #      the client API
-    my @statuses = map { $self->get_status($_) } (10007, 10008, 10009, 10012, 10006,);
+    my @statuses = map { $self->get_status($_) } (10000, 10007, 10008, 10009, 10012, 10006,);
     return \@statuses;
 }
 1;
