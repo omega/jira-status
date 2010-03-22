@@ -143,7 +143,6 @@ body {
             
         }
         .calendar td.today {
-            background-color: #eee;
         }
             .calendar td.today .calendar_daynumber {
                 text-shadow: 1-px -1px 0 white;
