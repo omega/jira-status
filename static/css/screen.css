@@ -353,29 +353,44 @@ body {
         overflow-x: hidden;
     }
         .statuses li span {
-            padding-left: 40px;
-            background-position: left center;
-            background-repeat: no-repeat;
-            display: block;
+            -moz-border-radius:3px 3px 3px 3px;
+            display: inline-block;
+            line-height: 1.4em;
+            font-size: 1.2em;
+            font-weight:bold;
+            padding:1px 2px;
+            text-decoration: none !important;
         }
 
         .statuses li.s10000 span {
-            background-image: url('../images/statuses/in-planning.png');
+            background:none repeat scroll 0 0 #B6B6B6;
+            color:#3B3B3B;
+            text-shadow:0.1em 0.1em 0 #CFCFCF;
         }
         .statuses li.s10007 span {
-            background-image: url('../images/statuses/in-development.png');
+            background:none repeat scroll 0 0 #6B6B6B;
+            color:#FFFFFF;
+            text-shadow:-0.1em -0.1em 0 #464646;
         }
         .statuses li.s10008 span {
-            background-image: url('../images/statuses/ready-for-qa.png');
+            background:none repeat scroll 0 0 #009ADD;
+            color:#003D57;
+            text-shadow:0.1em 0.1em 0 #59BDE9;
         }
         .statuses li.s10009 span {
-            background-image: url('../images/statuses/in-qa.png');
+            background:none repeat scroll 0 0 #006997;
+            color:#FFFFFF;
+            text-shadow:-0.1em -0.1em 0 #004462;
         }
         .statuses li.s10012 span {
-            background-image: url('../images/statuses/sugg-qa-fail.png');
+            background:none repeat scroll 0 0 #F80000;
+            color:#550000;
+            text-shadow:0.1em 0.1em 0 #FA5959;
         }
         .statuses li.s10006 span {
-            background-image: url('../images/statuses/ready-for-prod.png');
+            background:none repeat scroll 0 0 #5EBC32;
+            color:#123A00;
+            text-shadow:0.1em 0.1em 0 #96D37A;
         }
         
 #content ul.issues {
