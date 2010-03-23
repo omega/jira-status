@@ -114,18 +114,25 @@ body {
 .calendar table {
     margin: 0 auto;
 }
-    .calendar thead {
-        background-color: #e74c00;
-        color: white;
+    .calendar_calendar thead {
+        height: 40px;
+        background-color: #EEEEEE;
+        overflow: clip;
         -moz-box-shadow: silver -5px 5px 5px;
         -webkit-box-shadow: silver -5px 5px 5px;
                 box-shadow: silver -5px 5px 5px;
-        overflow: clip;
+        
     }
-        .calendar thead th {
-            padding: .5em 1em;
+        .calendar_calendar thead th {
+            color:#CCCCCC;
+            letter-spacing:-0.1em;
+            font-weight: bold;
+            font-size: 1.5em;
+            padding: 0 !important;
+            text-shadow:-1px -1px 0 #FFFFFF;
             text-align: center;
         }
+
     .calendar td {
         padding: .3em .3em;
         height: 100px;
@@ -319,7 +326,7 @@ body {
     font-size: 0.7em;
     font-weight: normal;
     line-height: 35px;
-    background-color: #E74C00;
+    background-color: #EEEEEE;
     color: white;
     -moz-box-shadow: silver -5px 5px 5px;
     -webkit-box-shadow: silver -5px 5px 5px;
