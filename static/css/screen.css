@@ -144,6 +144,9 @@ body {
                     box-shadow: silver 5px 0px 5px;
             
         }
+        .calendar td.history {
+            opacity: 0.7;
+        }
         .calendar td.today {
         }
             .calendar td.today .calendar_daynumber {
@@ -225,6 +228,10 @@ body {
         .calendar .issues .calendar_issues_resolved a {
             -moz-opacity: 0.8;
             opacity: 0.8;
+            color: #eee;
+        }
+        .calendar .issues.history .calendar_issues_unresolved a {
+            color: red;
         }
 
     .calendar_header {
