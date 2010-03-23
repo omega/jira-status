@@ -127,7 +127,7 @@ body {
             text-align: center;
         }
     .calendar td {
-        padding: .3em .7em;
+        padding: .3em .3em;
         height: 100px;
         width: 14%;
         border-right: 1px dotted #ddd;
@@ -135,6 +135,8 @@ body {
     }
         .calendar td:first-child {
             width: 2%;
+            padding: .3em .7em;
+            text-align: center;
             border-color: #aaa;
             background-color: #eee;
             -moz-box-shadow: silver 5px 0px 5px;
@@ -269,10 +271,12 @@ body {
         }
         .calendar_daywrapper .calendar_daynumber {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: -5px;
+            right: 0px;
             font-size: 3em;
             color: #ececec;
+            padding: 0;
+            text-align: bottom;
         }
 
     .calendar_weeknumber {
