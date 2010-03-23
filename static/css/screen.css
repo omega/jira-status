@@ -160,6 +160,9 @@ body {
             text-decoration: none;
             display: block;
         }
+            .calendar .issues a .strong {
+                font-weight: bolder;
+            }
         .calendar .issues a:before {
             -moz-border-radius:3px 3px 3px 3px;
             display:inline-block;
