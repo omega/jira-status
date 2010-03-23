@@ -25,14 +25,14 @@
             [%# Now we need to list out days %]
             [% WHILE (date.month == month) # We are in the same month %]
             [% SET daystr = date.ymd; day_issues = issues.$daystr; %]
-            <td class="[% IF day_issues %] issues[% END %][% IF date.ymd == today.ymd %] today[%
+            <td data:daystr="[% daystr %]" class="[% IF day_issues %] issues[% END %][% IF date.ymd == today.ymd %] today[%
             ELSIF today.compare(date) > 0 %] history[% ELSE %] future [% END %]">
                 <div class="calendar_daywrapper">
                     <span class="calendar_daynumber">[% date.day_of_month %]</span>
                     [% IF day_issues %]
                     <ul class="calendar_issueslist">
                         [% FOREACH issue IN day_issues %]
-                        <li class="[% IF issue.resolution %] calendar_issues_resolved[% ELSE %] calendar_issues_unresolved[% END %] s[% issue.status.id %]">
+                        <li data:duedate="[% issue.duedate.ymd %]" class="[% IF issue.resolution %] calendar_issues_resolved[% ELSE %] calendar_issues_unresolved[% END %] s[% issue.status.id %]">
                             <a class="calendar_issues_jira" href="https://bugs.startsiden.no/browse/[% issue.key %]"><strong>[% issue.key %]</strong>: [% issue.summary %]</a>
                         </li>
                         [% END %]

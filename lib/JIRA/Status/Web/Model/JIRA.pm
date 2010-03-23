@@ -33,6 +33,7 @@ sub next_issue {
     my $issue = $self->client->next_issue;
     return unless $issue;
     # Inflate some dates
+    warn $issue->{key};
     $issue->{updated} = $self->_inflate_date($issue->{updated});
     $issue->{duedate} = $self->_inflate_date($issue->{duedate}) if $issue->{duedate};
     $issue->{status} = $self->get_status($issue->{status});
@@ -45,8 +46,10 @@ sub next_issue {
 
 sub _inflate_date {
     my ($self, $date) = @_;
-    
-    return DateTime::Format::ISO8601->parse_datetime($date) if $date;
+    return unless $date;
+    $date = DateTime::Format::ISO8601->parse_datetime($date);
+    $date->set_time_zone('Europe/Oslo');
+    return $date;
 }
 
 has '_issues' => (
