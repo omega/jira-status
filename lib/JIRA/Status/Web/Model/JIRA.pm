@@ -33,7 +33,6 @@ sub next_issue {
     my $issue = $self->client->next_issue;
     return unless $issue;
     # Inflate some dates
-    warn $issue->{key};
     $issue->{updated} = $self->_inflate_date($issue->{updated});
     $issue->{duedate} = $self->_inflate_date($issue->{duedate}) if $issue->{duedate};
     $issue->{status} = $self->get_status($issue->{status});
