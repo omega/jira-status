@@ -1,0 +1,39 @@
+div#header {
+    display: none;
+}
+
+#content .calendar .calendar_header {
+    padding-bottom: 0.3em;
+    position: relative;
+}
+    #content .calendar .calendar_header {
+        -moz-transform: rotate(270deg) translate(-110px);
+        -moz-transform-origin: top left;
+        position: absolute;
+        width: 110px;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+        left: 0;
+        font-size: 1.0em;
+        text-align: center;
+        line-height: 50px;
+    }
+    #content .calendar .calendar_header .calendar_menu {
+        display: none;
+    }
+    #content .calendar .calendar_header.first {
+        -moz-transform: rotate(270deg) translate(-150px);
+    }
+#content .calendar_calendar thead {
+    height: 40px;
+    background-color: #EEEEEE;
+}
+    #content .calendar_calendar thead th {
+        color:#CCCCCC;
+        letter-spacing:-0.1em;
+        font-weight: bold;
+        font-size: 1.5em;
+        padding: 0 !important;
+        text-shadow:-1px -1px 0 #FFFFFF;
+    }

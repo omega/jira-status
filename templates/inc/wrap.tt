@@ -9,6 +9,9 @@
     <!--[if lt IE 8]>
         <link href="[% c.uri_for('/static/css/ie.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
+    [% IF bigscreen %]
+        <link href="[% c.uri_for('/static/css/bigscreen.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
+    [% END %]
 </head>
 <body id="index">
     <div class="container">
