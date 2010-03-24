@@ -43,7 +43,7 @@ coerce Event,
         JIRA::Status::Web::Model::Events::Event::JIRA->new(
             title => $_->{key},
             summary => $_->{summary},
-            datetime => $_->{duedate},
+            datetime => $_->{resolution} ? $_->{updated} : $_->{duedate}, # use updated for resolved issue
             status => $_->{status}->{id},
             resolution => $_->{resolution},
             link => $_->{link},
