@@ -27,9 +27,9 @@ sub _build_view {
 sub model {
     my $self = shift;
     my $cfg = $self->config->{model};
-    if (my $tt = $cfg->{'JIRA'}) {
-        Class::MOP::load_class("JIRA::Status::Web::Model::JIRA");
-        return JIRA::Status::Web::Model::JIRA->new(%$tt);
+    if (my $tt = $cfg->{'Events'}) {
+        Class::MOP::load_class("JIRA::Status::Web::Model::Events");
+        return JIRA::Status::Web::Model::Events->new(%$tt);
     }
 }
 

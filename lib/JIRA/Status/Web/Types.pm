@@ -5,6 +5,7 @@ use MooseX::Types
     -declare => [qw/
         TemplateToolkit
         JIRAClient
+        JIRAModel
     /]
 ;
 
@@ -23,4 +24,10 @@ coerce JIRAClient,
     via { JIRA::Client->new(@$_); }
 ;
 
+
+class_type JIRAModel, { class => 'JIRA::Status::Web::Model::JIRA' };
+coerce JIRAModel,
+    from HashRef,
+    via { Class::MOP::load_class('JIRA::Status::Web::Model::JIRA'); JIRA::Status::Web::Model::JIRA->new(%$_) }
+;
 1;
