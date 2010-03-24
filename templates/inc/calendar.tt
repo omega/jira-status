@@ -24,17 +24,15 @@
             [% WHILE (date.day_of_week > dow ); dow = dow + 1 %]<td class="pre"></td>[% END %]
             [%# Now we need to list out days %]
             [% WHILE (date.month == month) # We are in the same month %]
-            [% SET daystr = date.ymd; day_issues = issues.$daystr; %]
-            <td data:daystr="[% daystr %]" class="[% IF day_issues %] issues[% END %][% IF date.ymd == today.ymd %] today[%
+            [% SET daystr = date.ymd; day_events = events.$daystr; %]
+            <td class="[% IF day_events #XXX: This should be different classes depending on what we actually have %] issues[% END %][% IF date.ymd == today.ymd %] today[%
             ELSIF today.compare(date) > 0 %] history[% ELSE %] future [% END %]">
                 <div class="calendar_daywrapper">
                     <span class="calendar_daynumber">[% date.day_of_month %]</span>
-                    [% IF day_issues %]
+                    [% IF day_events %]
                     <ul class="calendar_issueslist">
-                        [% FOREACH issue IN day_issues %]
-                        <li data:duedate="[% issue.duedate.ymd %]" class="[% IF issue.resolution %] calendar_issues_resolved[% ELSE %] calendar_issues_unresolved[% END %] s[% issue.status.id %]">
-                            <a class="calendar_issues_jira" href="https://bugs.startsiden.no/browse/[% issue.key %]"><strong>[% issue.key %]</strong>: [% issue.summary %]</a>
-                        </li>
+                        [% FOREACH event IN day_events %]
+                        [% SET type = event.type; PROCESS $type %]
                         [% END %]
                     </ul>
                     [% END %]
@@ -52,3 +50,11 @@
         </tr>
     </tbody>
 </table>
+[% BLOCK jira %]
+<li class="[% IF event.resolved %] calendar_issues_resolved[% ELSE %] calendar_issues_unresolved[% END %] s[% event.status %]">
+    <a class="calendar_issues_jira" href="[% event.link %]"><strong>[% event.title %]</strong>[% IF event.has_summary %]: [% event.summary %][% END %]</a>
+</li>
+[% END %]
+[% BLOCK event %]
+<li><strong>[% event.title %]</strong></li>
+[% END %]

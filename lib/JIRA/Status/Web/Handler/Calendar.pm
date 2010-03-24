@@ -19,10 +19,10 @@ sub get_args {
     
     my $date = DateTime->new({ month => $m, year => $y});
     
-    my $issues = $self->model->get_active_releases_by_month($date);
+    my $events = $self->model->get_events_by_month();
     
     {
-        issues => $issues,
+        events => $events,
         statuses => $self->model->get_status_list,
         date => $date,
         prev => $date->clone->subtract(months => 1),

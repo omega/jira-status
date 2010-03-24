@@ -4,8 +4,9 @@ use JIRA::Client;
 use MooseX::Types
     -declare => [qw/
         TemplateToolkit
-        JIRAClient
+        JIRAClient JIRAClientIssue
         JIRAModel
+        Event ArrayOfEvents
     /]
 ;
 
@@ -21,7 +22,7 @@ coerce TemplateToolkit,
 class_type JIRAClient, { class => 'JIRA::Client' };
 coerce JIRAClient,
     from ArrayRef,
-    via { JIRA::Client->new(@$_); }
+    via { my $client = JIRA::Client->new(@$_); $client->{__base_url} = $_->[0]; $client; } # XXX: Ugly as sin!
 ;
 
 
@@ -29,5 +30,24 @@ class_type JIRAModel, { class => 'JIRA::Status::Web::Model::JIRA' };
 coerce JIRAModel,
     from HashRef,
     via { Class::MOP::load_class('JIRA::Status::Web::Model::JIRA'); JIRA::Status::Web::Model::JIRA->new(%$_) }
+;
+
+class_type Event, { class => 'JIRA::Status::Web::Model::Events::Event' };
+subtype ArrayOfEvents, as ArrayRef[Event];
+
+class_type JIRAClientIssue, { class => 'RemoteIssue' };
+coerce Event,
+    from JIRAClientIssue,
+    via {
+        Class::MOP::load_class('JIRA::Status::Web::Model::Events::Event');
+        JIRA::Status::Web::Model::Events::Event::JIRA->new(
+            title => $_->{key},
+            summary => $_->{summary},
+            datetime => $_->{duedate},
+            status => $_->{status}->{id},
+            resolution => $_->{resolution},
+            link => $_->{link},
+        );
+    }
 ;
 1;

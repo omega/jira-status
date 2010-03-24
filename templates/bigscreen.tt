@@ -1,6 +1,6 @@
 <div class="calendar">
     [% SET skip_days => 0 %]
     [% FOREACH month IN months %]
-    [% PROCESS inc/calendar.tt issues = month.issues, date = month.date %]
+    [% PROCESS inc/calendar.tt date = month.date %]
     [% SET skip_days => 1; END %]
 </div>
