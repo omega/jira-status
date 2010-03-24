@@ -22,7 +22,7 @@ coerce TemplateToolkit,
 class_type JIRAClient, { class => 'JIRA::Client' };
 coerce JIRAClient,
     from ArrayRef,
-    via { my $client = JIRA::Client->new(@$_); $client->{__base_url} = $_->[0]; $client; } # XXX: Ugly as sin!
+    via { JIRA::Client->new(@$_); }
 ;
 
 

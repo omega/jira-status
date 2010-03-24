@@ -40,7 +40,8 @@ sub next_issue {
     if ($issue->{status}->{name} ne 'In development' and $threshold > $issue->{updated}) {
         $issue->{overdue} = 1;
     }
-    $issue->{link} = $self->client->{__base_url} . '/browse/' . $issue->{key};
+    # Add a link
+    $issue->{link} = $self->client->getServerInfo()->{baseUrl} . '/browse/' . $issue->{key};
     return $issue;
 }
 
