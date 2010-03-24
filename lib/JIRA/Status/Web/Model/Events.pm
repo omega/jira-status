@@ -28,10 +28,9 @@ class JIRA::Status::Web::Model::Events {
         foreach my $issue (@issues) {
             next unless $issue->{duedate}; # XXX: This is for now, since not all releases have this enforced yet
             $events->add_event($issue);
-            #push(@{ $date_hash->{ $issue->{duedate}->ymd } }, $issue);
         }
         
-        return $events->as_date_hash();;
+        return $events->as_date_hash();
     }
 }
 
