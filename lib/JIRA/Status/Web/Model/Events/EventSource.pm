@@ -133,4 +133,45 @@ class JIRA::Status::Web::Model::Events::EventSource::JIRA extends JIRA::Status::
         return $self->filter_issues(sub { $_->{resolution} || $_->{duedate} });
     }
 }
+
+class JIRA::Status::Web::Model::Events::EventSource::iCal extends JIRA::Status::Web::Model::Events::EventSource {
+    use Data::ICal::DateTime;
+    use MooseX::Types::URI qw(Uri);
+    use LWP::Simple;
+    
+    has 'ics_url' => (is => 'ro', isa => Uri, coerce => 1, required => 1);
+    
+    has '_events' => (
+        traits => [qw/Array/], is => 'ro', isa => 'ArrayRef',
+        builder => '_fetch_events',
+        lazy => 1,
+        handles => {
+            'add_event' => 'push',
+            'events' => 'elements',
+        },
+    );
+    
+    method _fetch_events() {
+        # Need to fetch the damn ics_url
+        my $ics = get($self->ics_url->as_string) or confess("Could not fetch " . $self->ics_url->as_string);
+        
+        my $ical = Data::ICal->new(data => $ics);
+        
+        my $events = $ical->entries;
+        my @events;
+        foreach (@$events) {
+            # Lets just do the damn conversion here, no need to coerce later
+            next unless $_->ical_entry_type eq 'VEVENT';
+            my $props = $_->properties;
+            my ($summary) = $_->property('summary');
+            use Data::Dump;
+            my $event = JIRA::Status::Web::Model::Events::Event->new(
+                title => $summary->[0]->value,
+                datetime => $_->start,
+            );
+            push(@events, $event);
+        }
+        \@events;
+    }
+}
 1;
