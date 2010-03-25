@@ -2,34 +2,42 @@ use MooseX::Declare;
 
 
 class JIRA::Status::Web::Model::Events {
+    use Carp qw/carp/;
     
-    use JIRA::Status::Web::Types qw/JIRAModel/;
+    use JIRA::Status::Web::Types qw/ArrayOfEventSources/;
     use MooseX::Types::DateTime qw(DateTime);
     
     use JIRA::Status::Web::Model::Events::EventSet;
-
-    has 'jira' => (
-        is => 'ro', isa => JIRAModel, coerce => 1,
-        handles => [qw/
-            next_issue filter_issues all_releases 
-            get_active_releases get_active_releases_by_month
-            get_recent_failed_releases get_recent_successfull_releases
-            get_status get_status_list
-        /],
+    use JIRA::Status::Web::Model::Events::EventSource;
+    
+    has 'sources' => (
+        traits => [qw/Array/],
+        is => 'ro',
+        isa => ArrayOfEventSources,
+        coerce => 1,
+        default => sub {[]},
+        handles => {
+            'all_sources' => 'elements',
+            '_grep_sources' => 'grep',
+        },
     );
-
-
+    method get_source(Str $name) {
+        my ($source, $overflow) = $self->_grep_sources(sub { $_->name eq $name });
+        # XXX: This should really use the logging shit from Plack somehow :/
+        carp("You asked for a source named $name, but we got more than one result. Check your config") if $overflow;
+        return $source;
+    }
     method get_events_by_month() {
         my $events = JIRA::Status::Web::Model::Events::EventSet->new();
 
-        # Need to make it into an hash
-        my @issues = $self->all_releases;
-
-        foreach my $issue (@issues) {
-            next unless $issue->{duedate}; # XXX: This is for now, since not all releases have this enforced yet
-            $events->add_event($issue);
+        foreach my $source ($self->all_sources) {
+            
+            foreach my $event ($source->events) {
+                $events->add_event($event);
+                
+            }
+            
         }
-        
         return $events->as_date_hash();
     }
 }

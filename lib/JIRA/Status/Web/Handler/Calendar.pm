@@ -23,7 +23,7 @@ sub get_args {
     
     {
         events => $events,
-        statuses => $self->model->get_status_list,
+        statuses => $self->model->get_source('jira')->get_status_list,
         date => $date,
         prev => $date->clone->subtract(months => 1),
         next => $date->clone->add(months => 1),
