@@ -58,3 +58,6 @@
 [% BLOCK event %]
 <li><strong>[% event.title %]</strong></li>
 [% END %]
+[% BLOCK timed %]
+<li><strong>[% event.time %]</strong>[%event.title%]</li>
+[% END %]
