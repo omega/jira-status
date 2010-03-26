@@ -20,7 +20,9 @@ class JIRA::Status::Web::Model::Events::Event {
     }
 }
 
-class JIRA::Status::Web::Model::Events::Event::JIRA extends JIRA::Status::Web::Model::Events::Event {
+class JIRA::Status::Web::Model::Events::Event::JIRA 
+extends JIRA::Status::Web::Model::Events::Event
+{
     
     has 'status' => (is => 'ro', isa => 'Num', required => 1);
     

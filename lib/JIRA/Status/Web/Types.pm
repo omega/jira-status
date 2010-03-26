@@ -45,20 +45,4 @@ coerce ArrayOfEventSources,
 ;
 class_type Event, { class => 'JIRA::Status::Web::Model::Events::Event' };
 subtype ArrayOfEvents, as ArrayRef[Event];
-
-class_type JIRAClientIssue, { class => 'RemoteIssue' };
-coerce Event,
-    from JIRAClientIssue,
-    via {
-        Class::MOP::load_class('JIRA::Status::Web::Model::Events::Event');
-        JIRA::Status::Web::Model::Events::Event::JIRA->new(
-            title => $_->{key},
-            summary => $_->{summary},
-            datetime => $_->{resolution} ? $_->{updated} : $_->{duedate}, # use updated for resolved issue
-            status => $_->{status}->{id},
-            resolution => $_->{resolution},
-            link => $_->{link},
-        );
-    }
-;
 1;

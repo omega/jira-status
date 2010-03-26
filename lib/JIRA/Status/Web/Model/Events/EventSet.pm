@@ -13,7 +13,7 @@ class JIRA::Status::Web::Model::Events::EventSet {
         },
     );
     # We can't just delegate because we want coercion
-    method add_event(Event $event is coerce) {
+    method add_event(Event $event) {
         $self->_add_event($event);
     }
     

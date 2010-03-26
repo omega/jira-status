@@ -19,6 +19,7 @@ class JIRA::Status::Web::Model::Events::EventSource::JIRA extends JIRA::Status::
 
     use JIRA::Status::Web::Types qw/JIRAClient/;
 
+    use JIRA::Status::Web::Model::Events::Event;
     has 'client' => (
         is => 'ro',
         isa => JIRAClient,
@@ -129,8 +130,21 @@ class JIRA::Status::Web::Model::Events::EventSource::JIRA extends JIRA::Status::
     }
     
     method events {
+        my @issues;
         # XXX: This is to make sure we only return issues we can process
-        return $self->filter_issues(sub { $_->{resolution} || $_->{duedate} });
+        foreach ($self->filter_issues(sub { $_->{resolution} || $_->{duedate} })) {
+            my $issue = JIRA::Status::Web::Model::Events::Event::JIRA->new(
+                title => $_->{key},
+                summary => $_->{summary},
+                datetime => $_->{resolution} ? $_->{updated} : $_->{duedate}, # use updated for resolved issue
+                status => $_->{status}->{id},
+                resolution => $_->{resolution},
+                link => $_->{link},
+            );
+            
+            push(@issues, $issue);
+        }
+        @issues;
     }
 }
 
