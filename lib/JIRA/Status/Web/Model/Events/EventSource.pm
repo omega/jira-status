@@ -179,9 +179,10 @@ class JIRA::Status::Web::Model::Events::EventSource::iCal extends JIRA::Status::
             my $props = $_->properties;
             my ($summary) = $_->property('summary');
             use Data::Dump;
-            my $event = JIRA::Status::Web::Model::Events::Event->new(
+            my $event = JIRA::Status::Web::Model::Events::Event::Timed->new(
                 title => $summary->[0]->value,
                 datetime => $_->start,
+                time => $_->start->strftime('%H:%M'),
             );
             push(@events, $event);
         }
