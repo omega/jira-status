@@ -1,5 +1,5 @@
 use MooseX::Declare;
-namespace JIRA::Status::Web::Model::Events;
+namespace JIRA::Status::Data::Events;
 
 class ::EventSet {
     use JIRA::Status::Web::Types qw/Event ArrayOfEvents/;
