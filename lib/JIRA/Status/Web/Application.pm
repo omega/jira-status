@@ -3,9 +3,8 @@ package JIRA::Status::Web::Application;
 use Moose;
 extends 'Tatsumaki::Application';
 
-use Config::JFDI;
-
 use Path::Class::File;
+use JIRA::Status::Config;
 use MooseX::Types::Path::Class;
 has 'view' => (
     isa => 'Object',
@@ -43,35 +42,11 @@ has 'config' => (
 sub _load_config {
     
     # need to locate the damn config-file
-    
-    my $root = shift->_root_folder;
-    Config::JFDI->open(name => 'config', path => $root->stringify, path_to => $root->stringify)
-        or croak("Could not load config file");
+    JIRA::Status::Config->new->config;
 }
 
-has '_root_folder' => (
-    isa => 'Path::Class::Dir',
-    coerce => 1,
-    is => 'ro',
-    builder => '_locate_root_folder'
-);
-
-sub _locate_root_folder {
-    my $pkg = __PACKAGE__;
-    $pkg =~ s|::|/|g;
-    $pkg .= ".pm";
-    my $pm_file = $INC{$pkg};
-    die "Could not locate PM-file: $pm_file" unless ($pm_file and -f $pm_file);
-    my $dir = Path::Class::File->new($pm_file)->parent;
-    my $root_folder;
-    while ($dir->parent and $dir->parent ne $dir) {
-        if (-d $dir->subdir('lib') and -d $dir->subdir('static')) {
-            $root_folder = $dir;
-            last;
-        }
-        $dir = $dir->parent;
-    }
-   $dir; 
+sub _root_folder {
+    return shift->config->{root_folder};
 }
 has '+static_path' => (default => sub { shift->_root_folder->subdir('static')->stringify;});
 
