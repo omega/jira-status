@@ -1,6 +1,7 @@
 use MooseX::Declare;
+namespace JIRA::Status::Web::Model::Events;
 
-class JIRA::Status::Web::Model::Events::EventSource {
+class ::EventSource {
     
     has 'name' => (is => 'ro', isa => 'Str', required => 1);
     
@@ -12,7 +13,7 @@ class JIRA::Status::Web::Model::Events::EventSource {
     }
 }
 
-class JIRA::Status::Web::Model::Events::EventSource::JIRA extends JIRA::Status::Web::Model::Events::EventSource {
+class ::EventSource::JIRA extends ::EventSource {
     use DateTime;
     use DateTime::Format::ISO8601;
     use Data::Dump qw/dump/;
@@ -148,7 +149,7 @@ class JIRA::Status::Web::Model::Events::EventSource::JIRA extends JIRA::Status::
     }
 }
 
-class JIRA::Status::Web::Model::Events::EventSource::iCal extends JIRA::Status::Web::Model::Events::EventSource {
+class ::EventSource::iCal extends ::EventSource {
     use Data::ICal::DateTime;
     use MooseX::Types::URI qw(Uri);
     use LWP::Simple;

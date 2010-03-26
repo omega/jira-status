@@ -1,6 +1,7 @@
 use MooseX::Declare;
+namespace JIRA::Status::Web::Model::Events;
 
-class JIRA::Status::Web::Model::Events::Event {
+class ::Event {
     # ABSTRACT: Handles all our event differences
 
     use MooseX::Types::URI qw(Uri);
@@ -20,8 +21,7 @@ class JIRA::Status::Web::Model::Events::Event {
     }
 }
 
-class JIRA::Status::Web::Model::Events::Event::JIRA 
-extends JIRA::Status::Web::Model::Events::Event
+class ::Event::JIRA extends ::Event
 {
     
     has 'status' => (is => 'ro', isa => 'Num', required => 1);
@@ -29,7 +29,7 @@ extends JIRA::Status::Web::Model::Events::Event
     has 'resolution' => (is => 'ro', isa => 'Maybe[Num]', required => 0, predicate => 'resolved');
 }
 
-class JIRA::Status::Web::Model::Events::Event::Timed extends JIRA::Status::Web::Model::Events::Event {
+class ::Event::Timed extends ::Event {
     has 'time' => (is => 'ro', isa => 'Str', required => 1);
 }
 1;
