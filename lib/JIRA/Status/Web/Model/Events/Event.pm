@@ -27,4 +27,7 @@ class JIRA::Status::Web::Model::Events::Event::JIRA extends JIRA::Status::Web::M
     has 'resolution' => (is => 'ro', isa => 'Maybe[Num]', required => 0, predicate => 'resolved');
 }
 
+class JIRA::Status::Web::Model::Events::Event::Timed extends JIRA::Status::Web::Model::Events::Event {
+    has 'time' => (is => 'ro', isa => 'Str', required => 1);
+}
 1;
