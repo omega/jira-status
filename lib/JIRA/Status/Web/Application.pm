@@ -39,34 +39,12 @@ has 'config' => (
     lazy => 1,
 );
 
-sub _load_config {
-    
-    # need to locate the damn config-file
-    JIRA::Status::Config->new->config;
-}
+sub _load_config {    JIRA::Status::Config->new->config;     }
 
 sub _root_folder {
     return shift->config->{root_folder};
 }
 has '+static_path' => (default => sub { shift->_root_folder->subdir('static')->stringify;});
 
-=pod
-around BUILDARGS => sub {
-    my $orig = shift;
-    my $class = shift;
-    if (ref $_[0] eq 'ARRAY') {
-        my $handlers = shift @_;
-        my @rules;
-        while (my($path, $handler) = splice @$handlers, 0, 2) {
-            $path = qr/^$path/ unless ref $path eq 'RegExp';
-            push @rules, { path => $path, handler => $handler };
-        }
-        my %args = (@_, _rules => \@rules);
-        warn $class . "   ::::   " . dump(\%args);
-        $class->$orig(%args);
-    } else {
-        $class->$orig(@_);
-    }
-};
-=cut
+
 1;
