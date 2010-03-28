@@ -7,6 +7,8 @@ use MooseX::Types
         JIRAClient JIRAClientIssue
         EventSource ArrayOfEventSources
         Event ArrayOfEvents
+        
+        Db
     /]
 ;
 
@@ -24,13 +26,13 @@ coerce JIRAClient,
     from ArrayRef,
     via { JIRA::Client->new(@$_); }
 ;
-class_type EventSource, { class => 'JIRA::Status::Web::Model::Events::EventSource' };
+class_type EventSource, { class => 'JIRA::Status::Data::Events::EventSource' };
 subtype ArrayOfEventSources, as ArrayRef[EventSource];
 
 coerce EventSource,
     from HashRef,
     via {
-        JIRA::Status::Web::Model::Events::EventSource->instance(%$_);
+        JIRA::Status::Data::Events::EventSource->instance(%$_);
     }
 ;
 
@@ -43,6 +45,16 @@ coerce ArrayOfEventSources,
         $_;
     }
 ;
-class_type Event, { class => 'JIRA::Status::Web::Model::Events::Event' };
+class_type Event, { class => 'JIRA::Status::Data::Events::Event' };
 subtype ArrayOfEvents, as ArrayRef[Event];
+
+
+class_type Db, { class => 'JIRA::Status::Data::Db' };
+coerce Db,
+    from HashRef,
+    via {
+        Class::MOP::load_class('JIRA::Status::Data::Db');
+        JIRA::Status::Data::Db->new($_);
+    }
+;
 1;
