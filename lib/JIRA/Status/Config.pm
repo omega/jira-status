@@ -52,5 +52,18 @@ sub _locate_root_folder {
 
 
 
+package JIRA::Status::Config::Role;
+use Moose::Role;
+with qw(MooseX::ConfigFromFile);
+
+has 'config' => (
+    isa => 'HashRef',
+    is => 'rw',
+    builder => '_load_config',
+    lazy => 1,
+);
+sub _load_config {    JIRA::Status::Config->new->config;     }
+
+sub get_config_from_file {  JIRA::Status::Config->new->config;            }
 
 1;
