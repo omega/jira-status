@@ -10,7 +10,7 @@ use JIRA::Status::Web::Handler::Bigscreen;
 my $app = JIRA::Status::Web::Application->new([
     "/cal" => 'JIRA::Status::Web::Handler::Calendar',
     '/bigscreen' => 'JIRA::Status::Web::Handler::Bigscreen',
-    "/" => 'JIRA::Status::Web::Handler::Status',
+    "/" => 'JIRA::Status::Web::Handler::Calendar',
     
 ]);
 

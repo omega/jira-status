@@ -17,12 +17,14 @@
     <div class="container">
         <div id="header">
             <h1>JIRA Status web-app</h1>
+            <!-- # We have no menu now, we only ahve one endpoint 
             <div class="header_menu">
                 <ul>
                     <li><a href="[% c.uri_for('/cal') %]">Calendar</a></li>
                     <li><a href="[% c.uri_for('/') %]">Progress</a></li>
                 </ul>
             </div>
+            -->
         </div>
         <div id="content">
             [% content %]
