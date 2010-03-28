@@ -1,0 +1,3 @@
+#!/usr/bin/env perl
+use JIRA::Status::App;
+JIRA::Status::App->run;
