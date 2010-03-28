@@ -29,7 +29,6 @@ sub execute {
     my $events = JIRA::Status::Data::Events::EventSet->new();
 
     foreach my $source ($self->all_sources) {
-        warn "source: " . $source->name;
         foreach my $event ($source->events) {
             $events->add_event($event);
 

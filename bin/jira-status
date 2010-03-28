@@ -1,3 +1,6 @@
 #!/usr/bin/env perl
+use FindBin;
+use lib qw($FindBin::Bin/../lib);
+
 use JIRA::Status::App;
 JIRA::Status::App->run;
