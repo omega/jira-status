@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use lib qw(lib);
 
 use JIRA::Status::Web::Application;
 use JIRA::Status::Web::Handler::Status;
