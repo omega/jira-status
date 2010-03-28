@@ -2,10 +2,12 @@ package JIRA::Status::Web::Application;
 
 use Moose;
 extends 'Tatsumaki::Application';
+use JIRA::Status::Config;
+with 'JIRA::Status::Config::Role';
 
 use Path::Class::File;
-use JIRA::Status::Config;
 use MooseX::Types::Path::Class;
+
 has 'view' => (
     isa => 'Object',
     is => 'ro',
@@ -25,21 +27,13 @@ sub _build_view {
 
 sub model {
     my $self = shift;
-    my $cfg = $self->config->{model};
-    if (my $tt = $cfg->{'Events'}) {
+    
+    my $cfg = $self->config->{db};
+    if ($cfg) {
         Class::MOP::load_class("JIRA::Status::Web::Model::Events");
-        return JIRA::Status::Web::Model::Events->new(%$tt);
+        return JIRA::Status::Web::Model::Events->new(db => $cfg);
     }
 }
-
-has 'config' => (
-    isa => 'HashRef',
-    is => 'rw',
-    builder => '_load_config',
-    lazy => 1,
-);
-
-sub _load_config {    JIRA::Status::Config->new->config;     }
 
 sub _root_folder {
     return shift->config->{root_folder};
