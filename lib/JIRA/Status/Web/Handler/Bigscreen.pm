@@ -9,7 +9,7 @@ around 'get_args' => sub {
     my $orig_args = $self->$orig(@_);
 
     my $args = {};
-    foreach (qw(statuses today events)) {
+    foreach (qw(today events)) {
         $args->{$_} = $orig_args->{$_};
     }
 
