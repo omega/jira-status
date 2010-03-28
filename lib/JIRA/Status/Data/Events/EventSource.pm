@@ -65,6 +65,8 @@ class ::EventSource::JIRA extends ::EventSource {
         return unless $date;
         $date = DateTime::Format::ISO8601->parse_datetime($date);
         $date->set_time_zone('Europe/Oslo');
+        $date->set_time_zone('floating'); # We do this to make sure epoch value is correct in the other end.
+        
         return $date;
     }
 
