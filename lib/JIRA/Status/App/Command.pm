@@ -8,5 +8,6 @@ extends qw(MooseX::App::Cmd::Command);
 
 with qw(JIRA::Status::Config::Role JIRA::Status::Data::Db::Role);
 
+has '+configfile' => (default => 'config.yml');
 1;
 
