@@ -6,7 +6,7 @@ class ::EventSource {
     has 'name' => (is => 'ro', isa => 'Str', required => 1);
     
     method instance($class: Str:$type, HashRef:$args) {
-        my $source_class = 'JIRA::Status::Web::Model::Events::EventSource::' . $type;
+        my $source_class = 'JIRA::Status::Data::Events::EventSource::' . $type;
         
         Class::MOP::load_class($source_class); # Just for safety
         $source_class->new($args);
@@ -20,7 +20,7 @@ class ::EventSource::JIRA extends ::EventSource {
 
     use JIRA::Status::Web::Types qw/JIRAClient/;
 
-    use JIRA::Status::Web::Model::Events::Event;
+    use JIRA::Status::Data::Events::Event;
     has 'client' => (
         is => 'ro',
         isa => JIRAClient,
@@ -134,7 +134,7 @@ class ::EventSource::JIRA extends ::EventSource {
         my @issues;
         # XXX: This is to make sure we only return issues we can process
         foreach ($self->filter_issues(sub { $_->{resolution} || $_->{duedate} })) {
-            my $issue = JIRA::Status::Web::Model::Events::Event::JIRA->new(
+            my $issue = JIRA::Status::Data::Events::Event::JIRA->new(
                 title => $_->{key},
                 summary => $_->{summary},
                 datetime => $_->{resolution} ? $_->{updated} : $_->{duedate}, # use updated for resolved issue
@@ -180,7 +180,7 @@ class ::EventSource::iCal extends ::EventSource {
             my $props = $_->properties;
             my ($summary) = $_->property('summary');
             use Data::Dump;
-            my $event = JIRA::Status::Web::Model::Events::Event::Timed->new(
+            my $event = JIRA::Status::Data::Events::Event::Timed->new(
                 title => $summary->[0]->value,
                 datetime => $_->start,
                 time => $_->start->strftime('%H:%M'),
