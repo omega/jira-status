@@ -11,6 +11,7 @@
     <![endif]-->
     [% IF bigscreen %]
         <link href="[% c.uri_for('/static/css/bigscreen.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
+        <meta http-equiv="refresh" content="4">
     [% END %]
 </head>
 <body id="index">
