@@ -7,6 +7,8 @@ with 'JIRA::Status::Config::Role';
 
 use Path::Class::File;
 use MooseX::Types::Path::Class;
+use JIRA::Status::Web::View::TT;
+use JIRA::Status::Web::Model::Events;
 
 has 'view' => (
     isa => 'Object',
