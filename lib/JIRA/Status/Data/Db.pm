@@ -7,6 +7,8 @@ class ::Db extends KiokuX::Model {
     use JIRA::Status::Data::Events::Event;
     use JIRA::Status::Data::Events::EventSource;
     use JIRA::Status::Data::Events::EventSet;
+
+    # Just something
     
     # Now we need to have something for colecting and storing in 
     
