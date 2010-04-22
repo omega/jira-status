@@ -28,3 +28,6 @@ div#header {
 #timestamp.error {
     color: red !important;
 }
+#timestamp.stopped {
+    color: yellow !important;
+}

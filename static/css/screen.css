@@ -111,13 +111,6 @@ body {
 .calendar {
     position: relative;
 }
-.calendar .timestamp {
-    position: absolute;
-    padding: 0.1em 0.3em;
-    width: 70px;
-    line-height: 1em;
-    text-align: center;
-}
 .calendar table {
     margin: 0 auto;
 }
