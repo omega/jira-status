@@ -14,9 +14,15 @@ $(document).ready(function() {
         return;
     }
     window.setInterval(function() {
-        placeHolder.load('/bigscreen?nowrap=1', function(response) {
-            $(this).empty();
-            $(this).html(response);
+        $.get('/bigscreen?nowrap=1', function(response, status, req) {
+            console.log(status, req.status);
+            if (req.status == 200) {
+                placeHolder.empty();
+                placeHolder.html(response);
+                $('#timestamp').removeClass('error');
+            } else {
+                $('#timestamp').addClass('error');
+            }
         });
     }, 10000);
 });

@@ -25,3 +25,6 @@ div#header {
     #content .calendar .calendar_header.first {
         -moz-transform: rotate(270deg) translate(-150px);
     }
+#timestamp.error {
+    color: red !important;
+}
