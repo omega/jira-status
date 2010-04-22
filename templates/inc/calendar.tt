@@ -11,7 +11,8 @@
     [% UNLESS skip_days %]
     <thead>
         <tr>
-            <th class="calendar_header_first"></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
+            <th class="calendar_header_first">[% today.strftime('%H:%M') %]</th>
+            <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
         </tr>
     </thead>
     [% END %]

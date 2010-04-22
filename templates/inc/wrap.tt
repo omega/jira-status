@@ -1,8 +1,9 @@
+[% UNLESS nowrap %]
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>JIRA Status web-app</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="[% c.uri_for('/static/js/more.js') %]"></script>
     <link href="[% c.uri_for('/static/css/screen.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="[% c.uri_for('/static/css/print.css') %]" media="print" rel="stylesheet" type="text/css" />
@@ -11,7 +12,7 @@
     <![endif]-->
     [% IF bigscreen %]
         <link href="[% c.uri_for('/static/css/bigscreen.css') %]" media="screen, projection" rel="stylesheet" type="text/css" />
-        <meta http-equiv="refresh" content="10">
+        <!--- <meta http-equiv="refresh" content="10"> -->
     [% END %]
 </head>
 <body id="index">
@@ -28,7 +29,12 @@
             -->
         </div>
         <div id="content">
+             [% IF bigscreen %]<div id="bigscreen">[% END %]
+[% END %]
             [% content %]
+[%  UNLESS nowrap %]
+            [% IF bigscreen %]</div>[% END %]
         </div>
     </div>
 </body>
+[% END %]

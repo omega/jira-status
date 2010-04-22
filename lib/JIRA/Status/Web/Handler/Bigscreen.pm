@@ -30,6 +30,9 @@ around 'get_args' => sub {
     
     
     $args->{bigscreen} = 1;
+    if ($self->request->parameters->get('nowrap')) {
+        $args->{nowrap} = $self->request->parameters->get('nowrap');
+    }
     $args;
 };
 
