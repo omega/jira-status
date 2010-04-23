@@ -13,7 +13,7 @@ sub get {
 
 sub get_args {
     my $self = shift;
-    my $now = DateTime->now();
+    my $now = DateTime->now( time_zone => 'Europe/Oslo');
     # 201003 for instance (which is march 2010)
     my ($y, $m) = ( ($self->request->parameters->get('month') || $now->strftime('%Y%m')) =~ m/(\d{4})(\d{2})/ );
     
