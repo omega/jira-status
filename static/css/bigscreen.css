@@ -1,3 +1,10 @@
+body {
+    width: 1080px;
+    background-color: #222;
+}
+    div#content {
+        background-color: white;
+    }
 div#header {
     display: none;
 }
@@ -35,3 +42,113 @@ div#header {
 #timestamp.stopped {
     color: yellow !important;
 }
+
+.calendar .topbar {
+    height: 40px;
+    background-color: #EEEEEE;
+    overflow: clip;
+    -moz-box-shadow: silver -5px 5px 5px;
+    -webkit-box-shadow: silver -5px 5px 5px;
+            box-shadow: silver -5px 5px 5px;
+            text-align: right;
+            padding-right: 0.2em;
+}
+    .calendar .topbar span {
+        color:#CCCCCC;
+        letter-spacing:-0.1em;
+        font-weight: bold;
+        font-size: 1.5em;
+        padding: 0 !important;
+        text-shadow:-1px -1px 0 #FFFFFF;
+        line-height: 40px;
+        
+    }
+/* Week rendering of a table */
+
+table.week {
+    border-collapse: collapse;
+    margin: 0;
+    border-top: 1px dotted #ddd;
+    
+}
+table.week.next {
+    border-top: none;
+}
+    table.week caption {
+        -moz-transform: rotate(270deg) translate(-110px);
+        -moz-transform-origin: top left;
+        position: absolute;
+        width: 110px;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+        left: 0;
+        font-size: 1.0em;
+        text-align: center;
+        line-height: 50px;
+        font-size: 1.2em;
+        background-color:#2E3436;
+        color:white;
+    }
+    table.week tbody tr {
+        height: 7em;
+        border-left: 1px dotted #ddd;
+    }
+    table.week td.first {
+        width: 50px;
+        border-color: #aaa;
+        background-color: #eee;
+        -moz-box-shadow: silver 5px 0px 5px;
+        -webkit-box-shadow: silver 5px 0px 5px;
+                box-shadow: silver 5px 0px 5px;
+        
+    }
+    table.week td {
+        width: 343px;
+        height: 100%;
+        border-right: 1px dotted #ddd;
+        border-bottom: 1px dotted #ccc;
+    }
+        table.week td > div {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+            table.week td .daymarker {
+                content: "DAY";
+                position: absolute;
+                bottom: 0;
+                right: 5px;
+                color: #ECECEC;
+                font-size: 1.3em;
+                line-height: 1em;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            .week .issues .daymarker {
+                color: #61caff;
+                text-shadow: -1px -1px 0 #000;
+            }
+            .week .today .daymarker {
+                text-shadow: -1px -1px 0 white;
+                color: #e74c00;
+            }
+    table.week td.small {
+    }
+        table.week ul {
+            list-style: none;
+            padding: 0.2em;
+        }
+            .week ul li {
+                margin: 0.2em;
+                
+            }
+            .week .issues a {
+                text-decoration: none;
+            }
+            .week .issues a:before {
+                font-size: 0.8em;
+            }
+            .week .overdue {
+                color: red;
+            }

@@ -1,0 +1,11 @@
+[% BLOCK jira %]
+<li class="[% IF event.resolution %] calendar_issues_resolved[% ELSE %] calendar_issues_unresolved[% END %] s[% event.status %]">
+    <a class="calendar_issues_jira" href="[% event.link %]"><strong>[% event.title %]</strong>[% IF event.has_summary %]: [% event.summary %][% END %]</a>
+</li>
+[% END %]
+[% BLOCK event %]
+<li><strong>[% event.title %]</strong></li>
+[% END %]
+[% BLOCK timed %]
+<li><strong>[% event.time %]</strong>[%event.title%]</li>
+[% END %]

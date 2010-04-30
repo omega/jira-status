@@ -31,7 +31,7 @@ $(document).ready(function() {
     if (!placeHolder) {
         return;
     }
-    timer = window.setInterval(refreshCal, 10000);
+    //timer = window.setInterval(refreshCal, 10000);
     
     $('#timestamp').live('click', function() {
         if ($(this).hasClass('stopped')) {

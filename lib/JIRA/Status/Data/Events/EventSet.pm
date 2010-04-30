@@ -11,6 +11,7 @@ class ::EventSet {
         handles => {
             'add_event' => 'push',
             'events' => 'elements',
+            '_grep' => 'grep',
         },
     );
     
@@ -23,5 +24,9 @@ class ::EventSet {
         return $date_hash;
     }
     
+    method old_events(DateTime $limit, DateTime $oldest?) {
+        my $l = $limit->clone->truncate(to => 'days');
+        return [$self->_grep(sub { $_->datetime < $l and (defined($oldest) ? $_->datetime > $oldest : 1) } )];
+    }
 }
 1;

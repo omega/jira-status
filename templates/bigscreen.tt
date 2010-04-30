@@ -1,6 +1,80 @@
 <div class="calendar">
-    [% SET skip_days => 0 %]
-    [% FOREACH month IN months %]
-    [% PROCESS inc/calendar.tt date = month.date %]
-    [% SET skip_days => 1; END %]
+    <div class="topbar" id="timestamp"><span>[% today.strftime('%H:%M') %]</span></div>
+    [%# First lets render releases in the past in a more condensed way %]
+    <!-- 
+    <ul class="released calendar_issuelist issues">
+        [% FOREACH event IN old_events %]
+        [% SET type = event.type; PROCESS $type %]
+        [% END %]
+    </ul>
+    -->
+    [%# Then we render the current week and next week in a big manner %]
+    [% WHILE (date.week_number < today.week_number); SET date = date.add(days => 1); END; # Make sure we start on the current week %]
+    <table class="current week">
+        <caption>This week</caption>
+        <tr>
+            <td rowspan="4" class="first"></td>
+            [% PROCESS day  d => "mon" %]
+            [% PROCESS day  d => "tue" %]
+            [% PROCESS day  d => "wed" %]
+        </tr>
+        <tr>
+            <!-- intentionally left blank -->
+        </tr>
+        <tr>
+            [% PROCESS day  d => "thu" %]
+            [% PROCESS day  d => "fri" %]
+            [% PROCESS day  d => "sat small" %]
+        </tr>
+        <tr>
+            [% PROCESS day  d => "sun small" %]
+        </tr>
+    </table>    
+    <table class="next week">
+        <caption>Next week</caption>
+        <tr>
+            <td rowspan="4" class="first"></td>
+            [% PROCESS day  d => "mon" %]
+            [% PROCESS day  d => "tue" %]
+            [% PROCESS day  d => "wed" %]
+        </tr>
+        <tr>
+            <!-- intentionally left blank -->
+        </tr>
+        <tr>
+            [% PROCESS day  d => "thu" %]
+            [% PROCESS day  d => "fri" %]
+            [% PROCESS day  d => "sat small" %]
+        </tr>
+        <tr>
+            [% PROCESS day  d => "sun small" %]
+        </tr>
+    </table>
+    [% SET weeks = 5 %]
+    <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
+    [% SET skip_days = 0, skip_timestamp = 1 %]
+    [% PROCESS inc/calendar.tt %]
+    <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
+    [% SET skip_days = 1 %]
+    [% PROCESS inc/calendar.tt IF weeks %]
 </div>
+
+[% BLOCK day %]
+[% SET daystr = date.ymd; day_events = events.$daystr; %]
+<td class="[% d; IF day_events; ' issues'; END; IF date.ymd == today.ymd; ' today'; 
+ELSIF today.compare(date) > 0; ' history';
+ELSE; ' future';
+END %]" rowspan="[% IF d.search('small'); '1'; ELSE; '2'; END %]">
+    <div>
+    <span class="daymarker">[% d.split(" ").0 %]</span>
+    [% IF day_events %]
+    <ul class="calendar_issueslist">
+        [% FOREACH event IN day_events %]
+        [% SET type = event.type; PROCESS $type %]
+        [% END %]
+    </ul>
+    [% END %]
+    </div>
+</td>
+[% SET date = date.add(days => 1) %]
+[% END %]

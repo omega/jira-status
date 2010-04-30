@@ -11,7 +11,11 @@
     [% UNLESS skip_days %]
     <thead>
         <tr>
+            [% IF !skip_timestamp %]
             <th class="calendar_header_first" id="timestamp">[% today.strftime('%H:%M') %]</th>
+            [% ELSE %]
+            <th class="calendar_header_first"></th>
+            [% END %]
             <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
         </tr>
     </thead>
@@ -24,10 +28,13 @@
             <td class="calendar_first"><span class="calendar_weeknumber">[% date.week_number %]</span></td>
             [% WHILE (date.day_of_week > dow ); dow = dow + 1 %]<td class="pre"></td>[% END %]
             [%# Now we need to list out days %]
-            [% WHILE (date.month == month) # We are in the same month %]
+            [% WHILE (date.month == month && weeks) # We are in the same month %]
             [% SET daystr = date.ymd; day_events = events.$daystr; %]
-            <td class="[% IF day_events #XXX: This should be different classes depending on what we actually have %] issues[% END %][% IF date.ymd == today.ymd %] today[%
-            ELSIF today.compare(date) > 0 %] history[% ELSE %] future [% END %]">
+            <td class="[% IF day_events #XXX: This should be different classes depending on what we actually have %] issues[% END %][% 
+            IF date.ymd == today.ymd; ' today'; 
+            ELSIF today.compare(date) > 0; ' history';
+            ELSE; ' future';
+            END %]">
                 <div class="calendar_daywrapper">
                     <span class="calendar_daynumber">[% date.day_of_month %]</span>
                     [% IF day_events %]
@@ -40,25 +47,19 @@
                 </div>
             </td>
             [% SET date = date.add(days => 1); LAST UNLESS (date.month == month); # We get out so we don't get an empty last row %]
+            
+            <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
             [% IF dow == 7; SET dow = 0 # End this row and start a new one %]
-        </tr>
-        <tr>
-            <td><span class="calendar_weeknumber">[% date.week_number %]</span></td>
+                [% SET weeks = weeks - 1 %]
+                </tr>
+                [% IF weeks %]
+                <tr>
+                    <td><span class="calendar_weeknumber">[% date.week_number %]</span></td>
+                [% END %]
             [% END # End of week %]
             [% SET dow = dow + 1; %]
-            [% END # End of dates in this month %]
-            [% WHILE (dow < 7); %]<td class="calendar_post"></td>[% SET dow = dow + 1; END %]
+            [% END # WHILE (date.month == month && weeks), we are out of days in this month! %]
+            [% WHILE (dow < 7 && weeks); %]<td class="calendar_post"></td>[% SET dow = dow + 1; END %]
         </tr>
     </tbody>
 </table>
-[% BLOCK jira %]
-<li class="[% IF event.resolution %] calendar_issues_resolved[% ELSE %] calendar_issues_unresolved[% END %] s[% event.status %]">
-    <a class="calendar_issues_jira" href="[% event.link %]"><strong>[% event.title %]</strong>[% IF event.has_summary %]: [% event.summary %][% END %]</a>
-</li>
-[% END %]
-[% BLOCK event %]
-<li><strong>[% event.title %]</strong></li>
-[% END %]
-[% BLOCK timed %]
-<li><strong>[% event.time %]</strong>[%event.title%]</li>
-[% END %]

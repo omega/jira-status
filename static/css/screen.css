@@ -114,7 +114,7 @@ body {
 .calendar table {
     margin: 0 auto;
 }
-    .calendar_calendar thead {
+    .calendar thead {
         height: 40px;
         background-color: #EEEEEE;
         overflow: clip;
@@ -123,7 +123,7 @@ body {
                 box-shadow: silver -5px 5px 5px;
         
     }
-        .calendar_calendar thead th {
+        .calendar thead th {
             color:#CCCCCC;
             letter-spacing:-0.1em;
             font-weight: bold;
@@ -133,14 +133,14 @@ body {
             text-align: center;
         }
 
-    .calendar td {
+    .calendar_calendar td {
         padding: .3em .3em;
         height: 100px;
         width: 14%;
         border-right: 1px dotted #ddd;
         border-bottom: 1px dotted #ccc;
     }
-        .calendar td:first-child {
+        .calendar_calendar td:first-child {
             width: 2%;
             padding: .3em .7em;
             text-align: center;
@@ -157,13 +157,13 @@ body {
         .calendar td.today {
         }
             .calendar td.today .calendar_daynumber {
-                text-shadow: 1-px -1px 0 white;
+                text-shadow: -1px -1px 0 white;
                 color: #e74c00;
             }
     .calendar .issues {
         background-color: #2e3436;
     }
-        .calendar .issues .calendar_daynumber {
+        .calendar_calendar .issues .calendar_daynumber {
             color: #61caff;
             text-shadow: -1px -1px 0 #000;
         }
@@ -300,12 +300,12 @@ body {
         letter-spacing: -4px;
     }
 
-.next:after {
+a.next:after {
     content: '➠';
     padding-left: 1em;
 }
 
-.prev:before {
+a.prev:before {
     content: '➠';
     padding-left: 1em;
     -moz-transform: rotate(180deg);
@@ -332,159 +332,6 @@ body {
     -webkit-box-shadow: silver -5px 5px 5px;
             box-shadow: silver -5px 5px 5px;
     
-}
-#content .statuses {
-    display: block;
-}
-    #content .statuses li {
-        list-style-type: none;
-        white-space: nowrap;
-        margin-left: 0px;
-        margin-right: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-        width: 30%;
-        display: inline;
-        float: left;
-        font-weight: bold;
-    }
-    
-    * html #content .statuses li {
-        overflow-x: hidden;
-    }
-        #content .statuses li.first {
-            padding-left: 0.5em;
-        }
-        #content .statuses li.last {
-            padding-right: 0px;
-        }
-    
-    #content .statuses li.status {
-        width: 11%;
-    }
-    * html #content .statuses li.status {
-        overflow-x: hidden;
-    }
-    #content .statuses li.last {
-        display: inline;
-        float: left;
-        margin-right: 0;
-    }
-    * html #content .statuses li.last {
-        overflow-x: hidden;
-    }
-        .statuses li span {
-            -moz-border-radius:3px 3px 3px 3px;
-            display: inline-block;
-            line-height: 1.4em;
-            font-size: 1.2em;
-            font-weight:bold;
-            padding:1px 2px;
-            text-decoration: none !important;
-        }
-
-        .statuses li.s10000 span {
-            background:none repeat scroll 0 0 #B6B6B6;
-            color:#3B3B3B;
-            text-shadow:0.1em 0.1em 0 #CFCFCF;
-        }
-        .statuses li.s10007 span {
-            background:none repeat scroll 0 0 #6B6B6B;
-            color:#FFFFFF;
-            text-shadow:-0.1em -0.1em 0 #464646;
-        }
-        .statuses li.s10008 span {
-            background:none repeat scroll 0 0 #009ADD;
-            color:#003D57;
-            text-shadow:0.1em 0.1em 0 #59BDE9;
-        }
-        .statuses li.s10009 span {
-            background:none repeat scroll 0 0 #006997;
-            color:#FFFFFF;
-            text-shadow:-0.1em -0.1em 0 #004462;
-        }
-        .statuses li.s10012 span {
-            background:none repeat scroll 0 0 #F80000;
-            color:#550000;
-            text-shadow:0.1em 0.1em 0 #FA5959;
-        }
-        .statuses li.s10006 span {
-            background:none repeat scroll 0 0 #5EBC32;
-            color:#123A00;
-            text-shadow:0.1em 0.1em 0 #96D37A;
-        }
-        
-#content ul.issues {
-    list-style: none;
-}
-    #content ul.issues li {
-        position: relative;
-        border-bottom: 1px solid silver;
-        line-height: 35px;
-    }
-        #content ul.issues li:last-child {
-            border-bottom: none;
-        }
-    #content ul.issues li .key {
-        font-weight: bold;
-        font-size: 1.5em;
-        padding-left: 0.5em;
-    }
-    #content ul.issues li .title {
-        vertical-align: baseline;
-    }
-    #content ul.issues li .more {
-        display: none;
-        padding-right: 620px;
-        padding-left: 1em;
-        margin-bottom: 1em;
-        line-height: 1.1em;
-    }
-        #content ul.issues li .more dt {
-            font-weight: bold;
-        }
-        #content ul.issues li .more dd {
-            margin-left: 2em;
-            margin-bottom: 0.1em;
-        }
-    #content ul.issues li .marker {
-        position: absolute;
-        line-height: 35px;
-        display: block;
-        width: 100px;
-        height: 33px;
-        margin-top: 1px;
-        background-image: url('../images/blue-pushpin.png'), url('../images/msmarker.shadow.png');
-        background-repeat: no-repeat;
-        background-position: left center;
-        padding-left: 40px;
-        top: 0;
-        left: 100px;
-    }
-    #content ul.issues li.overdue .marker {
-        background-image: url('../images/red-pushpin.png'), url('../images/msmarker.shadow.png');
-    }
-    #content ul.issues li.s10000 .marker {
-        left: 30%;
-    }
-    #content ul.issues li.s10007 .marker {
-        left: 41%;
-    }
-    #content ul.issues li.s10008 .marker {
-        left: 52%;
-    }
-    #content ul.issues li.s10009 .marker {
-        left: 63%;
-    }
-    #content ul.issues li.s10012 .marker {
-        left: 74%;
-    }
-    #content ul.issues li.s10006 .marker {
-        left: 85%;
-    }
-
-#content ul.rolled li .marker, #content ul.failed li .marker {
-    display: none !important;
 }
 
 #content h3 {
