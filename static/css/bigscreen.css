@@ -102,9 +102,9 @@ div#header {
         height: 100%;
         background-color: #eee;
         border-right: 1px dotted #ddd;
-        -moz-box-shadow: silver 5px 0px 5px;
-        -webkit-box-shadow: silver 5px 0px 5px;
-                box-shadow: silver 5px 0px 5px;
+        -moz-box-shadow: silver 5px -2px 5px;
+        -webkit-box-shadow: silver 5px -2px 5px;
+                box-shadow: silver 5px -2px 5px;
     }
     .history .content {
         padding-top: 0.2em;
@@ -147,9 +147,9 @@ div#header {
                 margin-top: -0.1em;
                 background-color: #eee;
                 border-right: 1px dotted #ddd;
-                -moz-box-shadow: silver 5px 0px 5px;
-                -webkit-box-shadow: silver 5px 0px 5px;
-                        box-shadow: silver 5px 0px 5px;
+                -moz-box-shadow: silver 5px -2px 5px;
+                -webkit-box-shadow: silver 5px -2px 5px;
+                        box-shadow: silver 5px -2px 5px;
             }
                 .history .overdue .caption span {
                     font-size: 1em !important;
@@ -159,7 +159,17 @@ div#header {
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #464646;
             }
-        
+
+hr.sep {
+    border: 0;
+    height: 10px;
+    background-color: #eee;
+    margin: 0;
+    -moz-box-shadow: silver -5px 5px 5px;
+    -webkit-box-shadow: silver -5px 5px 5px;
+            box-shadow: silver -5px 5px 5px;
+    
+}        
 /* Week rendering of a table */
 
 table.week {

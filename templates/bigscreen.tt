@@ -24,6 +24,7 @@
             [% END %]
         </div>
     </div>
+    <hr class="sep"></hr>
     [%# Then we render the current week and next week in a big manner %]
     <table class="current week">
         <caption>This week</caption>
