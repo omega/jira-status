@@ -158,6 +158,19 @@ div#header {
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #464646;
             }
+            .history .overdue.issues li a:after {
+                content: "Due: " attr(updated);
+                -moz-border-radius:3px 3px 3px 3px;
+                display:inline-block;
+                font-weight:bold;
+                padding:1px 4px;
+                margin-right: 2px;
+                text-decoration: none !important;
+                background: red !important;
+                color:#FFFFFF;
+                text-shadow:-0.1em -0.1em 0 #464646;
+                
+            }
 
 hr.sep {
     border: 0;
