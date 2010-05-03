@@ -1,9 +1,15 @@
 body {
     width: 1080px;
     background-color: #222;
+    height: 1920px;
 }
+    div.container {
+        height: 100%;
+        
+    }
     div#content {
         background-color: white;
+        height: 100%;
     }
 div#header {
     display: none;
@@ -46,12 +52,13 @@ div#header {
 .calendar .topbar {
     height: 40px;
     background-color: #EEEEEE;
+    width: 1080px;
     overflow: clip;
+    text-align: right;
+    z-index: 2;
     -moz-box-shadow: silver -5px 5px 5px;
     -webkit-box-shadow: silver -5px 5px 5px;
             box-shadow: silver -5px 5px 5px;
-            text-align: right;
-            padding-right: 0.2em;
 }
     .calendar .topbar span {
         color:#CCCCCC;
@@ -61,11 +68,101 @@ div#header {
         padding: 0 !important;
         text-shadow:-1px -1px 0 #FFFFFF;
         line-height: 40px;
+        padding-right: 0.2em !important;
         
     }
+
+/* flowchart up top */
+.flowchart {
+    position: absolute;
+    left: 60px;
+    background: transparent !important;
+    font-size: 0.75em;
+}
+    .flowchart td a {
+        margin: 0.1em 0.3em;
+        color: #222 !important;
+    }
+/* Our history view */
+.history {
+    padding-left: 50px;
+    position: relative;
+}
+.history:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+    .history .sidebar {
+        width: 50px;
+        left: 0;
+        position: absolute;
+        height: 100%;
+        background-color: #eee;
+        border-right: 1px dotted #ddd;
+        -moz-box-shadow: silver 5px 0px 5px;
+        -webkit-box-shadow: silver 5px 0px 5px;
+                box-shadow: silver 5px 0px 5px;
+    }
+    .history .content {
+        padding-top: 0.2em;
+        font-size: 0.8em;
+    }
+        .history ul {
+            list-style: none;
+            width: 500px;
+            margin: 0;
+            float: left;
+            padding: 0;
+            background-color: transparent !important;
+            border-left: 1px dotted #ddd;
+            min-height: 110px;
+            
+            
+        }
+            .history .issues li {
+                margin: 0.2em;
+                padding-left: 0.2em;
+            }
+            .history .issues a {
+                color: #222 !important;
+            }
+
+        .history ul.overdue {
+            font-size: 1.5em;
+        }
+            .history .overdue li {
+                padding-left: 0.2em;
+            }
+            .history .overdue li.caption {
+                display: block;
+                padding: 0;
+                left: 500px;
+                position: absolute;
+                width: 50px;
+                height: 100%;
+                margin-top: -0.1em;
+                background-color: #eee;
+                border-right: 1px dotted #ddd;
+                -moz-box-shadow: silver 5px 0px 5px;
+                -webkit-box-shadow: silver 5px 0px 5px;
+                        box-shadow: silver 5px 0px 5px;
+            }
+                .history .overdue .caption span {
+                    font-size: 1em !important;
+                }
+            .history .overdue.issues li a:before {
+                background: red !important;
+                color:#FFFFFF;
+                text-shadow:-0.1em -0.1em 0 #464646;
+            }
+        
 /* Week rendering of a table */
 
 table.week {
+    clear: both;
     border-collapse: collapse;
     margin: 0;
     border-top: 1px dotted #ddd;
@@ -74,7 +171,7 @@ table.week {
 table.week.next {
     border-top: none;
 }
-    table.week caption {
+    table.week caption, .history h2, .history .overdue .caption span {
         -moz-transform: rotate(270deg) translate(-110px);
         -moz-transform-origin: top left;
         position: absolute;

@@ -151,6 +151,9 @@ body {
                     box-shadow: silver 5px 0px 5px;
             
         }
+        .calendar td.fri {
+            /* background-color: hsl(0, 30%, 50%); */
+        }
         .calendar td.history {
             opacity: 0.7;
         }
@@ -183,50 +186,50 @@ body {
             margin-right: 2px;
             text-decoration: none !important;
         }
-            .calendar li.s10000 a:before {
+            .calendar .s10000 a:before {
                 content: 'Pre';
                 background:none repeat scroll 0 0 #B6B6B6;
                 color:#3B3B3B;
                 text-shadow:0.1em 0.1em 0 #CFCFCF;
             }
-            .calendar li.s10007 a:before {
+            .calendar .s10007 a:before {
                 content: 'Dev';
                 background:none repeat scroll 0 0 #6B6B6B;
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #464646;
             }
-            .calendar li.s10008 a:before {
+            .calendar .s10008 a:before {
                 content: 'QA Rdy';
                 background:none repeat scroll 0 0 #009ADD;
                 color:#003D57;
                 text-shadow:0.1em 0.1em 0 #59BDE9;
             }
-            .calendar li.s10009 a:before {
+            .calendar .s10009 a:before {
                 content: 'In QA';
                 background:none repeat scroll 0 0 #006997;
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #004462;
             }
-            .calendar li.s10012 a:before {
+            .calendar .s10012 a:before {
                 content: 'QA Fail?';
                 background:none repeat scroll 0 0 #F80000;
                 color:#550000;
                 text-shadow:0.1em 0.1em 0 #FA5959;
             }
-            .calendar li.s10011 a:before {
+            .calendar .s10011 a:before {
                 content: 'QA Failed';
                 background:none repeat scroll 0 0 #C10000;
                 color:#FFFFFF;
                 text-shadow:0.1em 0.1em 0 #7E0000;
             }
-            .calendar li.s10006 a:before {
+            .calendar .s10006 a:before {
                 content: 'Prod Rdy';
                 background:none repeat scroll 0 0 #5EBC32;
                 color:#123A00;
                 text-shadow:0.1em 0.1em 0 #96D37A;
             }
-            .calendar li.s6 a:before, .calendar li.s10010 a:before {
-                content: 'In Prod';
+            .calendar .s6 a:before, .calendar .s10010 a:before {
+                content: attr(released);
                 background:none repeat scroll 0 0 #267700;
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #216800;

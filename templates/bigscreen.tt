@@ -1,53 +1,68 @@
 <div class="calendar">
-    <div class="topbar" id="timestamp"><span>[% today.strftime('%H:%M') %]</span></div>
     [%# First lets render releases in the past in a more condensed way %]
-    <!-- 
-    <ul class="released calendar_issuelist issues">
-        [% FOREACH event IN old_events %]
-        [% SET type = event.type; PROCESS $type %]
-        [% END %]
-    </ul>
-    -->
+    <div class="history">
+        <div class="sidebar"><h2>Released</h2></div>
+        <div class="content">
+            <ul class="released calendar_issuelist issues">
+                [% SET overdue = [] %]
+            [% WHILE (date.week_number < today.week_number); %]
+                [% SET daystr = date.ymd; day_events = events.$daystr; %]
+                [% FOREACH event IN day_events %]
+                    [% IF !event.resolution; overdue.push(event); NEXT; END %]
+                    [% SET type = event.type; PROCESS $type %]
+                [% END %]
+            [% SET date = date.add(days => 1); END; # Make sure we start on the current week %]
+    
+            </ul>
+            [% IF overdue.size > 0 %]
+            <ul class="overdue calendar_issuelist issues">
+                <li class="caption"><span>Overdue</span></li>
+                [% FOREACH event IN overdue %]
+                    [% SET type = event.type; PROCESS $type %]
+                [% END %]
+            </ul>
+            [% END %]
+        </div>
+    </div>
     [%# Then we render the current week and next week in a big manner %]
-    [% WHILE (date.week_number < today.week_number); SET date = date.add(days => 1); END; # Make sure we start on the current week %]
     <table class="current week">
         <caption>This week</caption>
         <tr>
             <td rowspan="4" class="first"></td>
-            [% PROCESS day  d => "mon" %]
-            [% PROCESS day  d => "tue" %]
-            [% PROCESS day  d => "wed" %]
+            [% PROCESS day %]
+            [% PROCESS day %]
+            [% PROCESS day %]
         </tr>
         <tr>
             <!-- intentionally left blank -->
         </tr>
         <tr>
-            [% PROCESS day  d => "thu" %]
-            [% PROCESS day  d => "fri" %]
-            [% PROCESS day  d => "sat small" %]
+            [% PROCESS day %]
+            [% PROCESS day %]
+            [% PROCESS day %]
         </tr>
         <tr>
-            [% PROCESS day  d => "sun small" %]
+            [% PROCESS day %]
         </tr>
     </table>    
     <table class="next week">
         <caption>Next week</caption>
         <tr>
             <td rowspan="4" class="first"></td>
-            [% PROCESS day  d => "mon" %]
-            [% PROCESS day  d => "tue" %]
-            [% PROCESS day  d => "wed" %]
+            [% PROCESS day %]
+            [% PROCESS day %]
+            [% PROCESS day %]
         </tr>
         <tr>
             <!-- intentionally left blank -->
         </tr>
         <tr>
-            [% PROCESS day  d => "thu" %]
-            [% PROCESS day  d => "fri" %]
-            [% PROCESS day  d => "sat small" %]
+            [% PROCESS day %]
+            [% PROCESS day %]
+            [% PROCESS day %]
         </tr>
         <tr>
-            [% PROCESS day  d => "sun small" %]
+            [% PROCESS day %]
         </tr>
     </table>
     [% SET weeks = 5 %]
@@ -57,16 +72,34 @@
     <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
     [% SET skip_days = 1 %]
     [% PROCESS inc/calendar.tt IF weeks %]
+    <div class="topbar" id="timestamp">
+        <table class="issues flowchart">
+            <tr>
+                <td class="s10000" rowspan="2"><a>In planning</a></td>
+                <td class="s10007" rowspan="2"><a>In development</a></td>
+                <td class="s10008" rowspan="2"><a>Ready for QA inst.</a></td>
+                <td class="s10009" rowspan="2"><a></a></td>
+                <td class="s10006"><a>Ready for prod inst.</a></td>
+                <td class="s10010"><a released="[% today.strftime('%d. %b') %]"> and it is released, yay!</a></td>
+            </tr>
+            <tr>
+                <td class="s10012"><a>which can either go to Dev again, or</a></td>
+                <td class="s10011"><a></a></td>
+            </tr>
+        </table>
+        <span>[% today.strftime('%H:%M') %]</span>
+    </div>
+    
 </div>
 
 [% BLOCK day %]
-[% SET daystr = date.ymd; day_events = events.$daystr; %]
+[% SET daystr = date.ymd; day_events = events.$daystr;  %]
 <td class="[% d; IF day_events; ' issues'; END; IF date.ymd == today.ymd; ' today'; 
 ELSIF today.compare(date) > 0; ' history';
 ELSE; ' future';
-END %]" rowspan="[% IF d.search('small'); '1'; ELSE; '2'; END %]">
+END %] [% date.strftime('%a') | lower %]" rowspan="[% IF date.strftime('%a').search('Sat|Sun'); '1'; ELSE; '2'; END %]">
     <div>
-    <span class="daymarker">[% d.split(" ").0 %]</span>
+    <span class="daymarker">[% date.strftime('%a %e') %]</span>
     [% IF day_events %]
     <ul class="calendar_issueslist">
         [% FOREACH event IN day_events %]

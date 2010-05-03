@@ -9,10 +9,11 @@ around 'get_args' => sub {
     my $orig_args = $self->$orig(@_);
 
     my $args = {};
-    foreach (qw(today events date)) {
+    foreach (qw(today events)) {
         $args->{$_} = $orig_args->{$_};
     }
 
+    $args->{date} = $orig_args->{date}->subtract({weeks => 2});
     $args->{months} = [];
     
     push(@{ $args->{months}}, {
@@ -28,7 +29,7 @@ around 'get_args' => sub {
         
     }
     my $oldest = $args->{today}->clone->subtract({ weeks => 2 });
-    $args->{old_events} = $self->model->get_historical_events($args->{today},$oldest);
+    #$args->{old_events} = $self->model->get_historical_events($args->{today},$oldest);
     
     $args->{bigscreen} = 1;
     if ($self->request->parameters->get('nowrap')) {
