@@ -2,10 +2,10 @@ body {
     width: 1080px;
     background-color: #222;
     height: 1920px;
+    overflow-x: hidden;
 }
     div.container {
         height: 100%;
-        
     }
     div#content {
         background-color: white;
@@ -112,8 +112,9 @@ div#header {
     }
         .history ul {
             list-style: none;
-            width: 500px;
+            width: 450px;
             margin: 0;
+            margin-right: 50px;
             float: left;
             padding: 0;
             background-color: transparent !important;
