@@ -28,7 +28,7 @@ function refreshCal() {
 }
 $(document).ready(function() {
     placeHolder = $("#bigscreen");
-    if (!placeHolder) {
+    if (!placeHolder.length) {
         return;
     }
     timer = window.setInterval(refreshCal, 10000);
