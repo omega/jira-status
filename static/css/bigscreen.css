@@ -83,18 +83,18 @@ div#header {
         color: #222 !important;
     }
 /* Our history view */
-.history {
+.calendar > .history {
     padding-left: 50px;
     position: relative;
 }
-.history:after {
+.calendar > .history:after {
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden;
 }
-    .history .sidebar {
+    .calendar > .history .sidebar {
         width: 50px;
         left: 0;
         position: absolute;
@@ -105,11 +105,11 @@ div#header {
         -webkit-box-shadow: silver 5px -2px 5px;
                 box-shadow: silver 5px -2px 5px;
     }
-    .history .content {
+    .calendar > .history .content {
         padding-top: 0.2em;
         font-size: 0.8em;
     }
-        .history ul {
+        .calendar > .history ul {
             list-style: none;
             width: 450px;
             margin: 0;
@@ -122,25 +122,25 @@ div#header {
             
             
         }
-            .history .issues li {
+            .calendar > .history .issues li {
                 margin: 0.2em;
                 padding-left: 0.2em;
             }
-            .history .issues a {
+            .calendar > .history .issues a {
                 color: #222 !important;
             }
 
-        .history ul.overdue {
+        .calendar > .history ul.overdue {
             font-size: 1.5em;
             margin-right: 0;
             width: 470px;
             padding-right: 50px;
         }
-            .history .overdue li {
+            .calendar > .history .overdue li {
                 padding-left: 0.2em;
                 position: relative;
             }
-            .history .overdue li.caption {
+            .calendar > .history .overdue li.caption {
                 display: block;
                 padding: 0;
                 left: 500px;
@@ -154,15 +154,15 @@ div#header {
                 -webkit-box-shadow: silver 5px -2px 5px;
                         box-shadow: silver 5px -2px 5px;
             }
-                .history .overdue .caption span {
+                .calendar > .history .overdue .caption span {
                     font-size: 1em !important;
                 }
-            .history .overdue.issues li a:before {
+            .calendar > .history .overdue.issues li a:before {
                 background: red !important;
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #464646;
             }
-            .history .overdue.issues li a:after {
+            .calendar > .history .overdue.issues li a:after {
                 content: "Due: " attr(updated);
                 -moz-border-radius:3px 3px 3px 3px;
                 display:inline-block;
