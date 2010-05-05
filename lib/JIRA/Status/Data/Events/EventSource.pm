@@ -139,7 +139,9 @@ class ::EventSource::JIRA extends ::EventSource {
             my $issue = JIRA::Status::Data::Events::Event::JIRA->new(
                 title => $_->{key},
                 summary => $_->{summary},
-                datetime => $_->{resolution} ? $_->{resolved} : $_->{duedate}, # use updated for resolved issue
+                # XXX: This should be $_->resolved, but not available :/
+#                datetime => $_->{resolution} ? $_->{updated} : $_->{duedate}, # use updated for resolved issue
+                datetime => $_->{duedate},
                 status => $_->{status}->{id},
                 resolution => $_->{resolution},
                 link => $_->{link},
