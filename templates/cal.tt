@@ -1,3 +1,3 @@
 <div class="calendar">
-    [% PROCESS inc/calendar.tt %]
+    [% SET weeks = 6; PROCESS inc/calendar.tt %]
 </div>
