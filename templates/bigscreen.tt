@@ -8,7 +8,7 @@
             [% WHILE (date.week_number < today.week_number); %]
                 [% SET daystr = date.ymd; day_events = events.$daystr; %]
                 [% FOREACH event IN day_events %]
-                    [% IF !event.resolution; overdue.push(event); NEXT; END %]
+                    [% NEXT UNLESS event.type == "jira"; IF !event.resolution; overdue.push(event); NEXT; END %]
                     [% SET type = event.type; PROCESS $type %]
                 [% END %]
             [% SET date = date.add(days => 1); END; # Make sure we start on the current week %]
@@ -18,7 +18,7 @@
             <ul class="overdue calendar_issuelist issues">
                 <li class="caption"><span>Overdue</span></li>
                 [% FOREACH event IN overdue %]
-                    [% SET type = event.type; PROCESS $type %]
+                    [% SET type = event.type;  PROCESS $type %]
                 [% END %]
             </ul>
             [% END %]
