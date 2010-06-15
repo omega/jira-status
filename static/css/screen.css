@@ -175,6 +175,10 @@ body {
             text-decoration: none;
             display: block;
         }
+            .calendar .issues a .project {
+                font-weight: lighter;
+                font-size: 0.8em;
+            }
             .calendar .issues a .strong {
                 font-weight: bolder;
             }

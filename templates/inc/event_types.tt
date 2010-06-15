@@ -4,7 +4,9 @@
         [% IF event.resolution %]released="[% event.datetime.strftime('%d. %b') %]"[% END %]
         updated="[% event.datetime.strftime('%d. %b') %]"
     >
-        <strong>[% event.title %]</strong>[% IF event.has_summary %]: [% event.summary %][% END %]
+        <strong>[% event.title %]</strong>
+        [% IF event.project != "RM" %]<span class="project">([% event.project %])</span>[% END %]
+        [% IF event.has_summary %]: [% event.summary %][% END %]
     </a>
 </li>
 [% END %]
