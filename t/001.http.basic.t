@@ -8,7 +8,7 @@ use Plack::Util;
 use HTTP::Request::Common;
 
 
-my $app = Plack::Util::load_psgi('jira-status.psgi');
+my $app = Plack::Util::load_psgi('app.psgi');
 
 test_psgi
     app => $app,
