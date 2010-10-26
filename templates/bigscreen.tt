@@ -12,7 +12,6 @@
                     [% SET type = event.type; PROCESS $type %]
                 [% END %]
             [% SET date = date.add(days => 1); END; # Make sure we start on the current week %]
-    
             </ul>
             [% IF overdue.size > 0 %]
             <ul class="overdue calendar_issuelist issues">
@@ -45,7 +44,7 @@
         <tr>
             [% PROCESS day %]
         </tr>
-    </table>    
+    </table>
     <table class="next week">
         <caption>Next week</caption>
         <tr>
@@ -69,10 +68,10 @@
     [% SET weeks = 5 %]
     <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
     [% SET skip_days = 0, skip_timestamp = 1 %]
-    [% PROCESS inc/calendar.tt %]
+    [%# PROCESS inc/calendar.tt %]
     <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
     [% SET skip_days = 1 %]
-    [% PROCESS inc/calendar.tt IF weeks %]
+    [%# PROCESS inc/calendar.tt IF weeks %]
     <div class="topbar" id="timestamp">
         <table class="issues flowchart">
             <tr>
@@ -90,7 +89,6 @@
         </table>
         <span>[% today.strftime('%H:%M') %]</span>
     </div>
-    
 </div>
 
 [% BLOCK day %]

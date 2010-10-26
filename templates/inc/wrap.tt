@@ -19,7 +19,7 @@
     <div class="container">
         <div id="header">
             <h1>JIRA Status web-app</h1>
-            <!-- # We have no menu now, we only ahve one endpoint 
+            <!-- # We have no menu now, we only ahve one endpoint
             <div class="header_menu">
                 <ul>
                     <li><a href="[% c.uri_for('/cal') %]">Calendar</a></li>
@@ -33,7 +33,9 @@
 [% END %]
             [% content %]
 [%  UNLESS nowrap %]
-            [% IF bigscreen %]</div>[% END %]
+            [% IF bigscreen %]</div>
+            <iframe style="width: 100%; height: 800px" src="http://builder.startsiden.no/svnrepos/grid?fullscreen=1&transparent=1" allowTransparent="true"></iframe>
+            [% END %]
         </div>
     </div>
 </body>
