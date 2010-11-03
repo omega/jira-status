@@ -14,5 +14,5 @@
 <li><strong>[% event.title %]</strong></li>
 [% END %]
 [% BLOCK timed %]
-<li><strong>[% event.time %]</strong>[%event.title%]</li>
+<li class="calendar_timed"><strong>[% event.time %]</strong>[%event.title%]</li>
 [% END %]

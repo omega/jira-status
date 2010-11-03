@@ -244,6 +244,20 @@ body {
         .calendar .issues.history .calendar_issues_unresolved a {
             color: red;
         }
+        .calendar .issues .calendar_timed {
+            color: #FFFFFF;
+        }
+            .calendar .issues .calendar_timed strong {
+                -moz-border-radius:3px 3px 3px 3px;
+                background-color: white;
+                color: #333333;
+                text-shadow:-0.1em -0.1em 0 #ccc;
+                display: inline-block;
+                font-weight:bold;
+                padding:1px 4px;
+                margin-right: 4px;
+                text-decoration: none !important;
+            }
 
     .calendar_header {
         padding: .3em 2em 2em 2em;
