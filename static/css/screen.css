@@ -121,7 +121,6 @@ body {
         -moz-box-shadow: silver -5px 5px 5px;
         -webkit-box-shadow: silver -5px 5px 5px;
                 box-shadow: silver -5px 5px 5px;
-        
     }
         .calendar thead th {
             color:#CCCCCC;
@@ -149,7 +148,6 @@ body {
             -moz-box-shadow: silver 5px 0px 5px;
             -webkit-box-shadow: silver 5px 0px 5px;
                     box-shadow: silver 5px 0px 5px;
-            
         }
         .calendar td.fri {
             /* background-color: hsl(0, 30%, 50%); */
@@ -238,7 +236,6 @@ body {
                 color:#FFFFFF;
                 text-shadow:-0.1em -0.1em 0 #216800;
             }
-            
         .calendar .issues .calendar_issues_resolved a {
             -moz-opacity: 0.8;
             opacity: 0.8;
