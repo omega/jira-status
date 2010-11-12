@@ -1,45 +1,45 @@
 body {
-    width: 1080px;
-    background-color: #222;
+    background-color: #222222;
     overflow-x: hidden;
+    width: 1080px;
 }
-    div.container {
-        height: 100%;
-    }
-    div#content {
-        background-color: white;
-        height: 100%;
-    }
+div.container {
+    height: 100%;
+}
+div#content {
+    background-color: #2E3436;
+    height: 100%;
+}
 div#header {
     display: none;
 }
-
 #content .calendar .calendar_header {
+    background-color: white;
     padding-bottom: 0.3em;
     position: relative;
 }
-    #content .calendar .calendar_header {
-        -moz-transform: rotate(270deg) translate(-110px);
-        -moz-transform-origin: top left;
-        position: absolute;
-        width: 110px;
-        height: 50px;
-        margin: 0;
-        padding: 0;
-        left: 0;
-        font-size: 1.0em;
-        text-align: center;
-        line-height: 50px;
-    }
-    #content .calendar .calendar_header .calendar_menu {
-        display: none;
-    }
-    #content .calendar .calendar_header.first {
-        -moz-transform: rotate(270deg) translate(-150px);
-    }
+#content .calendar .calendar_header {
+    -moz-transform: rotate(270deg) translate(-110px);
+    -moz-transform-origin: left top;
+    font-size: 1em;
+    height: 50px;
+    left: 0;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    width: 110px;
+}
+#content .calendar .calendar_header .calendar_menu {
+    display: none;
+}
+#content .calendar .calendar_header.first {
+    -moz-transform: rotate(270deg) translate(-150px);
+}
 #timestamp {
-    cursor: pointer;
     -moz-box-shadow: none !important;
+    cursor: pointer;
 }
 #timestamp.error {
     color: red !important;
@@ -47,229 +47,198 @@ div#header {
 #timestamp.stopped {
     color: yellow !important;
 }
-
 .calendar .topbar {
     height: 40px;
-    background-color: #EEEEEE;
-    width: 1080px;
-    overflow: clip;
+    margin: 0.2em 0;
     text-align: right;
+    width: 1080px;
     z-index: 2;
-    -moz-box-shadow: silver -5px 5px 5px;
-    -webkit-box-shadow: silver -5px 5px 5px;
-            box-shadow: silver -5px 5px 5px;
 }
-    .calendar .topbar span {
-        color:#CCCCCC;
-        letter-spacing:-0.1em;
-        font-weight: bold;
-        font-size: 1.5em;
-        padding: 0 !important;
-        text-shadow:-1px -1px 0 #FFFFFF;
-        line-height: 40px;
-        padding-right: 0.2em !important;
-    }
-
-/* flowchart up top */
+.calendar .topbar span {
+    color: #CCCCCC;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    line-height: 40px;
+    padding: 0 0.2em 0 0 !important;
+    text-shadow: -1px -1px 0 #000;
+}
 .flowchart {
-    position: absolute;
-    left: 60px;
-    background: transparent !important;
+    background: none repeat scroll 0 0 transparent !important;
     font-size: 0.75em;
+    left: 60px;
+    position: absolute;
 }
-    .flowchart td a {
-        margin: 0.1em 0.3em;
-        color: #222 !important;
-    }
-/* Our history view */
+.flowchart td a {
+    margin: 0.1em 0.3em;
+}
 .calendar > .history {
     padding-left: 50px;
     position: relative;
 }
 .calendar > .history:after {
+    clear: both;
     content: ".";
     display: block;
     height: 0;
-    clear: both;
     visibility: hidden;
 }
-    .calendar > .history .sidebar {
-        width: 50px;
-        left: 0;
-        position: absolute;
-        height: 100%;
-        background-color: #eee;
-        border-right: 1px dotted #ddd;
-        -moz-box-shadow: silver 5px -2px 5px;
-        -webkit-box-shadow: silver 5px -2px 5px;
-                box-shadow: silver 5px -2px 5px;
-    }
-    .calendar > .history .content {
-        padding-top: 0.2em;
-        font-size: 0.8em;
-    }
-        .calendar > .history ul {
-            list-style: none;
-            width: 450px;
-            margin: 0;
-            margin-right: 50px;
-            float: left;
-            padding: 0;
-            background-color: transparent !important;
-            border-left: 1px dotted #ddd;
-            min-height: 110px;
-        }
-            .calendar > .history .issues li {
-                margin: 0.2em;
-                padding-left: 0.2em;
-            }
-            .calendar > .history .issues a {
-                color: #222 !important;
-            }
-
-        .calendar > .history ul.overdue {
-            font-size: 1.5em;
-            margin-right: 0;
-            width: 470px;
-            padding-right: 50px;
-        }
-            .calendar > .history .overdue li {
-                padding-left: 0.2em;
-                position: relative;
-            }
-            .calendar > .history .overdue li.caption {
-                display: block;
-                padding: 0;
-                left: 500px;
-                position: absolute;
-                width: 50px;
-                height: 100%;
-                margin-top: -0.1em;
-                background-color: #eee;
-                border-right: 1px dotted #ddd;
-                -moz-box-shadow: silver 5px -2px 5px;
-                -webkit-box-shadow: silver 5px -2px 5px;
-                        box-shadow: silver 5px -2px 5px;
-            }
-                .calendar > .history .overdue .caption span {
-                    font-size: 1em !important;
-                }
-            .calendar > .history .overdue.issues li a:before {
-                background: red !important;
-                color:#FFFFFF;
-                text-shadow:-0.1em -0.1em 0 #464646;
-            }
-            .calendar > .history .overdue.issues li a:after {
-                content: "Due: " attr(updated);
-                -moz-border-radius:3px 3px 3px 3px;
-                display:inline-block;
-                font-weight:bold;
-                padding:1px 4px;
-                margin-right: 2px;
-                text-decoration: none !important;
-                background: red !important;
-                color:#FFFFFF;
-                text-shadow:-0.1em -0.1em 0 #464646;
-                display: block;
-                position: absolute;
-                font-size: 0.7em;
-                right: -50px;
-                top: 3px;
-            }
-
-hr.sep {
-    border: 0;
-    height: 10px;
-    background-color: #eee;
-    margin: 0;
-    -moz-box-shadow: silver -5px 5px 5px;
-    -webkit-box-shadow: silver -5px 5px 5px;
-            box-shadow: silver -5px 5px 5px;
+.calendar > .history .sidebar {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 50px;
 }
-/* Week rendering of a table */
-
-table.week {
-    clear: both;
-    border-collapse: collapse;
+.calendar > .history .content {
+    font-size: 0.8em;
+    padding-top: 0.2em;
+}
+.calendar > .history ul {
+    background-color: transparent !important;
+    border-left: 1px dotted #666666;
+    float: left;
+    list-style: none outside none;
+    margin: 0 50px 0 0;
+    min-height: 110px;
+    padding: 0;
+    width: 450px;
+}
+.calendar > .history .issues li {
+    margin: 0.2em;
+    padding-left: 0.2em;
+}
+.calendar > .history .issues a {
+    color: #CCCCCC !important;
+}
+.calendar > .history ul.overdue {
+    font-size: 1.5em;
+    margin-right: 0;
+    padding-right: 50px;
+    width: 470px;
+}
+.calendar > .history .overdue li {
+    padding-left: 0.2em;
+    position: relative;
+}
+.calendar > .history .overdue li.caption {
+    display: block;
+    height: 100%;
+    left: 500px;
+    margin-top: -0.1em;
+    padding: 0;
+    position: absolute;
+    width: 50px;
+}
+.calendar > .history .overdue .caption span {
+    font-size: 1em !important;
+}
+.calendar > .history .overdue.issues li a:before {
+    background: none repeat scroll 0 0 red !important;
+    color: #FFFFFF;
+    text-shadow: -0.1em -0.1em 0 #464646;
+}
+.calendar > .history .overdue.issues li a:after {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: none repeat scroll 0 0 red !important;
+    color: #FFFFFF;
+    content: "Due: " attr(updated);
+    display: block;
+    font-size: 0.7em;
+    font-weight: bold;
+    margin-right: 2px;
+    padding: 1px 4px;
+    position: absolute;
+    right: -50px;
+    text-decoration: none !important;
+    text-shadow: -0.1em -0.1em 0 #464646;
+    top: 3px;
+}
+hr.sep {
+    background-color: #2E3436;
+    border: 0 none;
+    height: 0;
     margin: 0;
-    border-top: 1px dotted #ddd;
+}
+table.week {
+    border-collapse: collapse;
+    border-top: 1px dotted #666666;
+    clear: both;
+    margin: 0;
 }
 table.week.next {
-    border-top: none;
+    border-top: medium none;
 }
-    table.week caption, .history h2, .history .overdue .caption span {
-        -moz-transform: rotate(270deg) translate(-110px);
-        -moz-transform-origin: top left;
-        position: absolute;
-        width: 110px;
-        height: 50px;
-        margin: 0;
-        padding: 0;
-        left: 0;
-        font-size: 1.0em;
-        text-align: center;
-        line-height: 50px;
-        font-size: 1.2em;
-        background-color:#2E3436;
-        color:white;
-    }
-    table.week tbody tr {
-        height: 7em;
-        border-left: 1px dotted #ddd;
-    }
-    table.week td.first {
-        width: 50px;
-        border-color: #aaa;
-        background-color: #eee;
-        -moz-box-shadow: silver 5px 0px 5px;
-        -webkit-box-shadow: silver 5px 0px 5px;
-                box-shadow: silver 5px 0px 5px;
-    }
-    table.week td {
-        width: 343px;
-        height: 100%;
-        border-right: 1px dotted #ddd;
-        border-bottom: 1px dotted #ccc;
-    }
-        table.week td > div {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-            table.week td .daymarker {
-                content: "DAY";
-                position: absolute;
-                bottom: 0;
-                right: 5px;
-                color: #ECECEC;
-                font-size: 1.3em;
-                line-height: 1em;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
-            .week .issues .daymarker {
-                color: #61caff;
-                text-shadow: -1px -1px 0 #000;
-            }
-            .week .today .daymarker {
-                text-shadow: -1px -1px 0 white;
-                color: #e74c00;
-            }
-    table.week td.small {
-    }
-        table.week ul {
-            list-style: none;
-            padding: 0.2em;
-        }
-            .week ul li {
-                margin: 0.2em;
-            }
-            .week .issues a {
-                text-decoration: none;
-            }
-            .week .issues a:before {
-                font-size: 0.8em;
-            }
-            .week .overdue {
-                color: red;
-            }
+table.week caption, .history h2, .history .overdue .caption span {
+    -moz-transform: rotate(270deg) translate(-110px);
+    -moz-transform-origin: left top;
+    border: 0 none !important;
+    color: white;
+    font-size: 1.2em;
+    height: 50px;
+    left: 0;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    width: 110px;
+}
+table.week tbody tr {
+    border-left: 1px dotted #666666;
+    height: 7em;
+}
+table.week td.first {
+    border-color: #666666;
+    width: 50px;
+}
+table.week td {
+    border-bottom: 1px dotted #666666;
+    border-right: 1px dotted #666666;
+    height: 100%;
+    width: 343px;
+}
+table.week td > div {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+table.week td .daymarker {
+    bottom: 0;
+    color: #ECECEC;
+    content: "DAY";
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 1em;
+    position: absolute;
+    right: 5px;
+    text-transform: uppercase;
+}
+.week .issues .daymarker {
+    color: #61CAFF;
+    text-shadow: -1px -1px 0 #000000;
+}
+.week .today .daymarker {
+    color: #E74C00;
+    text-shadow: -1px -1px 0 white;
+}
+table.week td.small {
+}
+table.week ul {
+    list-style: none outside none;
+    padding: 0.2em;
+}
+.week ul li {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background-image: -moz-linear-gradient(left center , #2E3436 0%, #222222 100%);
+    margin: 0.2em;
+}
+.week .issues a {
+    text-decoration: none;
+}
+.week .issues a:before {
+    font-size: 0.8em;
+}
+.week .overdue {
+    color: red;
+}
+
