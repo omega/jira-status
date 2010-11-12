@@ -39,6 +39,7 @@ div#header {
     }
 #timestamp {
     cursor: pointer;
+    -moz-box-shadow: none !important;
 }
 #timestamp.error {
     color: red !important;

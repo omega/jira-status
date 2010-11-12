@@ -13,15 +13,15 @@ has 'config' => (
 );
 
 sub _load_config {
-    
+
     # need to locate the damn config-file
-    
+
     my $root = shift->_root_folder;
     my $cfg = Config::JFDI->open(name => 'config', path => $root->stringify, path_to => $root->stringify)
         or croak("Could not load config file");
-        
+
     $cfg->{root_folder} ||= $root;
-    
+
     $cfg;
 }
 
@@ -47,7 +47,7 @@ sub _locate_root_folder {
         }
         $dir = $dir->parent;
     }
-   $dir; 
+   $dir;
 }
 
 

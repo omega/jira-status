@@ -6,15 +6,18 @@ __PACKAGE__->asynchronous(1);
 sub model {
     return $_[0]->application->model;
 }
+sub config {
+    return $_[0]->application->config;
+}
 
 sub uri_for {
     my($self, $path, $args) = @_;
     my $uri = $self->request->base;
     $path =~ s|^/|| if $uri =~ m|/$|;
-    
+
     $uri->path($uri->path . $path);
     $uri->query_form($args) if $args;
-    
+
     $uri->path_query;
 }
 
@@ -24,9 +27,9 @@ around 'render' => sub {
     my $self = shift;
     my $template = shift;
     my $args = shift;
-    
+
     $args->{c} = $self;
-    
+
     $self->$orig($template, $args);
 };
 

@@ -9,13 +9,14 @@ around 'get_args' => sub {
     my $orig_args = $self->$orig(@_);
 
     my $args = {};
+    $args->{iframe} = $self->config->{'iframe'};
     foreach (qw(today events)) {
         $args->{$_} = $orig_args->{$_};
     }
 
     $args->{date} = $orig_args->{date}->subtract({weeks => 2});
     $args->{months} = [];
-    
+
     push(@{ $args->{months}}, {
         date => $orig_args->{date},
     });
@@ -26,11 +27,11 @@ around 'get_args' => sub {
         push(@{ $args->{months}}, {
             date => $date,
         });
-        
+
     }
     my $oldest = $args->{today}->clone->subtract({ weeks => 2 });
     #$args->{old_events} = $self->model->get_historical_events($args->{today},$oldest);
-    
+
     $args->{bigscreen} = 1;
     if ($self->request->parameters->get('nowrap')) {
         $args->{nowrap} = $self->request->parameters->get('nowrap');
@@ -39,10 +40,8 @@ around 'get_args' => sub {
 };
 
 override 'get' => sub {
-    
     my $self = shift;
     $self->render('bigscreen.tt', $self->get_args);
-    
 };
 
 1;
