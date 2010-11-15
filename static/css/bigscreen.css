@@ -38,7 +38,7 @@ div#header {
     -moz-transform: rotate(270deg) translate(-150px);
 }
 #timestamp {
-    -moz-box-shadow: none !important;
+    box-shadow: none !important;
     cursor: pointer;
 }
 #timestamp.error {
@@ -61,7 +61,7 @@ div#header {
     letter-spacing: -0.1em;
     line-height: 40px;
     padding: 0 0.2em 0 0 !important;
-    text-shadow: -1px -1px 0 #000;
+    text-shadow: -1px -1px 0 #000000;
 }
 .flowchart {
     background: none repeat scroll 0 0 transparent !important;
@@ -109,16 +109,26 @@ div#header {
 }
 .calendar > .history .issues a {
     color: #CCCCCC !important;
+    overflow: hidden;
+    width: 520px;
 }
 .calendar > .history ul.overdue {
     font-size: 1.5em;
     margin-right: 0;
-    padding-right: 50px;
-    width: 470px;
+    width: 520px;
 }
 .calendar > .history .overdue li {
     padding-left: 0.2em;
     position: relative;
+    margin-right: 100px;
+}
+.calendar > .history .overdue li a {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+.calendar > .history .overdue li .summary {
+    font-size: 0.8em;
 }
 .calendar > .history .overdue li.caption {
     display: block;
@@ -138,8 +148,8 @@ div#header {
     text-shadow: -0.1em -0.1em 0 #464646;
 }
 .calendar > .history .overdue.issues li a:after {
-    -moz-border-radius: 3px 3px 3px 3px;
     background: none repeat scroll 0 0 red !important;
+    border-radius: 3px 3px 3px 3px;
     color: #FFFFFF;
     content: "Due: " attr(updated);
     display: block;
@@ -148,7 +158,7 @@ div#header {
     margin-right: 2px;
     padding: 1px 4px;
     position: absolute;
-    right: -50px;
+    right: -100px;
     text-decoration: none !important;
     text-shadow: -0.1em -0.1em 0 #464646;
     top: 3px;
@@ -228,9 +238,11 @@ table.week ul {
     padding: 0.2em;
 }
 .week ul li {
-    -moz-border-radius: 5px 5px 5px 5px;
-    background-image: -moz-linear-gradient(left center , #2E3436 0%, #222222 100%);
+    background-image: -moz-linear-gradient(left center , #222222 0%, #2E3436 100%);
+    border-radius: 5px 5px 5px 5px;
     margin: 0.2em;
+    padding: 0.1em;
+    min-height: 21px;
 }
 .week .issues a {
     text-decoration: none;
