@@ -5,13 +5,22 @@
         <div class="content">
             <ul class="released calendar_issuelist issues">
                 [% SET overdue = [] %]
-            [% WHILE (date.week_number < today.week_number); %]
+            [% WHILE ( # This gets ugly to handle year crossings!
+                date.year < today.year
+                || (date.year == today.year  && (
+                    date < today ||
+                    date.week_number < today.week_number
+                ) )
+                ); %]
                 [% SET daystr = date.ymd; day_events = events.$daystr; %]
                 [% FOREACH event IN day_events %]
                     [% NEXT UNLESS event.type == "jira"; IF !event.resolution; overdue.push(event); NEXT; END %]
                     [% SET type = event.type; PROCESS $type %]
                 [% END %]
-            [% SET date = date.add(days => 1); END; # Make sure we start on the current week %]
+            [% SET date = date.add(days => 1);
+            END; # Make sure we start on the current week, and it needs to be in
+                 # comment to prevent output
+            "<!-- " _ date.truncate(to => 'week') _ " -->"; %]
             </ul>
             [% IF overdue.size > 0 %]
             <ul class="overdue calendar_issuelist issues">
