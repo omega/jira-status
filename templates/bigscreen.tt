@@ -1,4 +1,21 @@
 <div class="calendar">
+    <div class="topbar" id="timestamp">
+        <table class="issues flowchart">
+            <tr>
+                <td class="s10000" rowspan="2"><a>In planning</a></td>
+                <td class="s10007" rowspan="2"><a>In development</a></td>
+                <td class="s10008" rowspan="2"><a>Ready for QA inst.</a></td>
+                <td class="s10009" rowspan="2"><a></a></td>
+                <td class="s10006"><a>Ready for prod inst.</a></td>
+                <td class="s10010"><a released="[% today.strftime('%d. %b') %]"> and it is released, yay!</a></td>
+            </tr>
+            <tr>
+                <td class="s10012"><a>which can either go to Dev again, or</a></td>
+                <td class="s10011"><a></a></td>
+            </tr>
+        </table>
+        <span>[% today.strftime('%H:%M') %]</span>
+    </div>
     [%# First lets render releases in the past in a more condensed way %]
     <div class="history">
         <div class="sidebar"><h2>Released</h2></div>
@@ -81,23 +98,6 @@
     <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
     [% SET skip_days = 1 %]
     [%# PROCESS inc/calendar.tt IF weeks %]
-    <div class="topbar" id="timestamp">
-        <table class="issues flowchart">
-            <tr>
-                <td class="s10000" rowspan="2"><a>In planning</a></td>
-                <td class="s10007" rowspan="2"><a>In development</a></td>
-                <td class="s10008" rowspan="2"><a>Ready for QA inst.</a></td>
-                <td class="s10009" rowspan="2"><a></a></td>
-                <td class="s10006"><a>Ready for prod inst.</a></td>
-                <td class="s10010"><a released="[% today.strftime('%d. %b') %]"> and it is released, yay!</a></td>
-            </tr>
-            <tr>
-                <td class="s10012"><a>which can either go to Dev again, or</a></td>
-                <td class="s10011"><a></a></td>
-            </tr>
-        </table>
-        <span>[% today.strftime('%H:%M') %]</span>
-    </div>
 </div>
 
 [% BLOCK day %]
