@@ -164,6 +164,18 @@ body {
     .calendar .issues {
         background-color: #2e3436;
     }
+        .calendar .issues.fullday {
+            background-image: url(../images/diag_lines_dark_red.png);
+        }
+            .calendar .issues.fullday strong {
+                -moz-border-radius: 3px;
+                font-weight: bold;
+                padding: 1px 4px;
+                display: inline-block;
+                background: none repeat scroll 0 0 #B6B6B6;
+                color: #FFFFFF;
+                text-shadow: 0.1em 0.1em 0 #CFCFCF;
+            }
         .calendar_calendar .issues .calendar_daynumber {
             color: #61caff;
             text-shadow: -1px -1px 0 #000;

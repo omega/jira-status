@@ -16,3 +16,6 @@
 [% BLOCK timed %]
 <li class="calendar_timed"><strong>[% event.time %]</strong>[%event.title%]</li>
 [% END %]
+[% BLOCK fullday %]
+<li class="calendar_fullday">[% IF event.title %]<strong>[% event.title %]</strong>[% END %]</li>
+[% END %]
