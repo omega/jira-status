@@ -247,6 +247,10 @@ table.week ul {
     padding: 0.1em;
     min-height: 21px;
 }
+    .week ul li.calendar_fullday {
+        background: none;
+    }
+.week ul
 .week .issues a {
     text-decoration: none;
 }
