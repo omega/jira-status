@@ -198,12 +198,22 @@ class ::EventSource::iCal extends ::EventSource {
             my $props = $_->properties;
             my ($summary) = $_->property('summary');
             use Data::Dump;
-            my $event = JIRA::Status::Data::Events::Event::Timed->new(
-                title => $summary->[0]->value,
-                datetime => $_->start,
-                time => $_->start->strftime('%H:%M'),
-            );
-            push(@events, $event);
+            warn dd($props);
+            if (!$_->end) {
+                # This is a full day event
+                my $event = JIRA::Status::Data::Events::Event::Fullday->new(
+                    title => $summary->[0]->value,
+                    datetime => $_->start,
+                );
+                push(@events, $event);
+            } else {
+                my $event = JIRA::Status::Data::Events::Event::Timed->new(
+                    title => $summary->[0]->value,
+                    datetime => $_->start,
+                    time => $_->start->strftime('%H:%M'),
+                );
+                push(@events, $event);
+            }
         }
         \@events;
     }

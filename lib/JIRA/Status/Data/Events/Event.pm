@@ -35,4 +35,6 @@ class ::Event::JIRA extends ::Event
 class ::Event::Timed extends ::Event {
     has 'time' => (is => 'ro', isa => 'Str', required => 1);
 }
+class ::Event::Fullday extends ::Event {
+}
 1;
