@@ -167,6 +167,9 @@ body {
         .calendar .issues.fullday {
             background-image: url(../images/diag_lines_dark_red.png);
         }
+            .calendar .issues.fullday > div {
+                background-color: rgba(46, 52, 54, 0.5);
+            }
             .calendar .issues.fullday strong {
                 -moz-border-radius: 3px;
                 font-weight: bold;
