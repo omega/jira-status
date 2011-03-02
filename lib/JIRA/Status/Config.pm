@@ -2,7 +2,7 @@ package JIRA::Status::Config;
 
 use MooseX::Singleton;
 use Config::JFDI;
-
+use MooseX::Types::Path::Class;
 
 
 has 'config' => (
