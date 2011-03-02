@@ -216,4 +216,26 @@ class ::EventSource::iCal extends ::EventSource {
         \@events;
     }
 }
+class ::EventSource::BlockedDays extends ::EventSource {
+    use DateTime;
+
+    method events() {
+        # calculate some months ahead of now?
+        my $now = DateTime->now()->subtract(months => 1);
+
+        my $end = DateTime->now()->add(months => 3);
+        my @events;
+        while ($now < $end) {
+            if ($now->day_of_week > 4) {# Fri-sun
+                my $event = JIRA::Status::Data::Events::Event::Fullday->new(
+                    datetime => $now->clone,
+                    title => '', # empty, we only want to trigger the red
+                );
+                push(@events, $event);
+            }
+            $now->add(days => 1);
+        }
+        @events if scalar(@events);
+    }
+}
 1;
