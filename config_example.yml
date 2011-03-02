@@ -1,0 +1,28 @@
+---
+iframe: http://some/url/that/will/be/at/the/bottom
+sources:
+    -
+        type: JIRA
+        args:
+            name: jira
+            client:
+                - 'https://bugs.yourcompany.alot'
+                - 'user'
+                - 'password'
+            project_field: 10070 # ID of the custom field holding the "Project" link
+    -
+        type: iCal
+        args:
+            name: operations
+            ics_url: 'http://some/ics/file'
+
+view:
+    TT:
+        template:
+                INCLUDE_PATH:
+                    - "__path_to(templates)__"
+                DEFAULT_ENCODING: 'utf-8'
+                WRAPPER: 'inc/wrap.tt'
+                PRE_PROCESS: 'inc/preprocess.tt'
+db:
+    dsn: 'MongoDB:database_name=jirastatus;database_host=<YOURHOST>;collection_name=events'

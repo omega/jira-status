@@ -1,3 +1,4 @@
 .prove
 .*~
 config_local.yml
+config.yml
