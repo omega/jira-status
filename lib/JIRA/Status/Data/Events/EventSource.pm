@@ -197,8 +197,6 @@ class ::EventSource::iCal extends ::EventSource {
             next unless $_->ical_entry_type eq 'VEVENT';
             my $props = $_->properties;
             my ($summary) = $_->property('summary');
-            use Data::Dump;
-            warn dd($props);
             if (!$_->end) {
                 # This is a full day event
                 my $event = JIRA::Status::Data::Events::Event::Fullday->new(
