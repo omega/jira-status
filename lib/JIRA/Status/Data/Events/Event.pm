@@ -14,21 +14,21 @@ class ::Event {
     has 'summary' => (is => 'ro', isa => 'Str', required => 0, predicate => 'has_summary');
 
     has 'datetime' => (is => 'ro', isa => DateTime, required => 1);
-    
+
     method type() {
         my ($type) = (ref($self) =~ m/([^:]+)$/);
         return lc($type);
     }
-    
+
 }
 
 class ::Event::JIRA extends ::Event
 {
-    
+
     has 'status' => (is => 'ro', isa => 'Num', required => 1);
-    
+
     has 'resolution' => (is => 'ro', isa => 'Maybe[Num]', required => 0, predicate => 'resolved');
-    
+
     has 'project' => (is => 'ro', isa => 'Maybe[Str]', required => 0);
 }
 

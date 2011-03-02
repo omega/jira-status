@@ -7,7 +7,6 @@ use MooseX::Types
         JIRAClient JIRAClientIssue
         EventSource ArrayOfEventSources
         Event ArrayOfEvents
-        
         Db
     /]
 ;
@@ -17,7 +16,7 @@ use MooseX::Types::Moose qw/Object HashRef ArrayRef/;
 
 class_type TemplateToolkit, { class => 'Template' };
 
-coerce TemplateToolkit, 
+coerce TemplateToolkit,
     from HashRef,
     via { Template->new(%$_); }
 ;

@@ -2,12 +2,12 @@ use MooseX::Declare;
 namespace JIRA::Status::Data::Events;
 
 class ::EventSource {
-    
+
     has 'name' => (is => 'ro', isa => 'Str', required => 1);
-    
+
     method instance($class: Str:$type, HashRef:$args) {
         my $source_class = 'JIRA::Status::Data::Events::EventSource::' . $type;
-        
+
         Class::MOP::load_class($source_class); # Just for safety
         $source_class->new($args);
     }
@@ -27,9 +27,9 @@ class ::EventSource::JIRA extends ::EventSource {
         coerce => 1,
         handles => [qw/set_filter_iterator getSavedFilters get_issue_types/],
     );
-    
+
     has 'project_field' => ( is => 'ro', isa => 'Int', required => 0);
-    
+
     has '_remote_statuses' => (
         is => 'ro',
         isa => 'HashRef',
@@ -59,7 +59,7 @@ class ::EventSource::JIRA extends ::EventSource {
         }
         # Add a link
         $issue->{link} = $self->client->getServerInfo()->{baseUrl} . '/browse/' . $issue->{key};
-        
+
         # need to figure out the Project-field, if we have one
         use Data::Dump qw/dump/;
         my $cf = $issue->{customFieldValues};
@@ -79,13 +79,13 @@ class ::EventSource::JIRA extends ::EventSource {
         $date = DateTime::Format::ISO8601->parse_datetime($date);
         $date->set_time_zone('Europe/Oslo');
         $date->set_time_zone('floating'); # We do this to make sure epoch value is correct in the other end.
-        
+
         return $date;
     }
 
     has '_issues' => (
         traits => ['Array'],
-        is => 'ro', 
+        is => 'ro',
         isa => 'ArrayRef',
         lazy => 1,
         builder => '_get_issues',
@@ -144,7 +144,7 @@ class ::EventSource::JIRA extends ::EventSource {
         my @statuses = map { $self->get_status($_) } (10000, 10007, 10008, 10009, 10012, 10006,);
         return \@statuses;
     }
-    
+
     method events {
         my @issues;
         # XXX: This is to make sure we only return issues we can process
@@ -160,7 +160,7 @@ class ::EventSource::JIRA extends ::EventSource {
                 link => $_->{link},
                 project => $_->{project},
             );
-            
+
             push(@issues, $issue);
         }
         @issues;
@@ -171,9 +171,9 @@ class ::EventSource::iCal extends ::EventSource {
     use Data::ICal::DateTime;
     use MooseX::Types::URI qw(Uri);
     use LWP::Simple;
-    
+
     has 'ics_url' => (is => 'ro', isa => Uri, coerce => 1, required => 1);
-    
+
     has '_events' => (
         traits => [qw/Array/], is => 'ro', isa => 'ArrayRef',
         builder => '_fetch_events',
@@ -183,13 +183,13 @@ class ::EventSource::iCal extends ::EventSource {
             'events' => 'elements',
         },
     );
-    
+
     method _fetch_events() {
         # Need to fetch the damn ics_url
         my $ics = get($self->ics_url->as_string) or confess("Could not fetch " . $self->ics_url->as_string);
-        
+
         my $ical = Data::ICal->new(data => $ics);
-        
+
         my $events = $ical->entries;
         my @events;
         foreach (@$events) {

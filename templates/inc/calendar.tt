@@ -30,8 +30,9 @@
             [%# Now we need to list out days %]
             [% WHILE (date.month == month && weeks) # We are in the same month %]
             [% SET daystr = date.ymd; day_events = events.$daystr; %]
-            <td class="[% IF day_events #XXX: This should be different classes depending on what we actually have %] issues[% END %][% 
-            IF date.ymd == today.ymd; ' today'; 
+            <td class="[% IF day_events
+            #XXX: This should be different classes depending on what we actually have %] issues[% END %][%
+            IF date.ymd == today.ymd; ' today';
             ELSIF today.compare(date) > 0; ' history';
             ELSE; ' future';
             END %] [% date.strftime('%a') | lower %]">
@@ -47,7 +48,7 @@
                 </div>
             </td>
             [% SET date = date.add(days => 1); LAST UNLESS (date.month == month); # We get out so we don't get an empty last row %]
-            
+
             <!-- WEEKS: [% weeks %]  DATE: [% date %] -->
             [% IF dow == 7; SET dow = 0 # End this row and start a new one %]
                 [% SET weeks = weeks - 1 %]
