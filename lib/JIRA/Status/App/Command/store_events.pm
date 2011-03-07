@@ -25,6 +25,7 @@ has 'sources' => (
 sub execute {
     my ($self) = @_;
     my $scope = $self->db->new_scope;
+    $self->db->backend->clear();
 
     my $events = JIRA::Status::Data::Events::EventSet->new();
 
@@ -34,7 +35,7 @@ sub execute {
 
         }
 
-    }    
+    }
     $self->db->store_eventset($events);
 }
 
