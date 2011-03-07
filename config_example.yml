@@ -15,6 +15,10 @@ sources:
         args:
             name: operations
             ics_url: 'http://some/ics/file'
+    -
+        type: BlockedDays
+        args:
+            name: blocked
 
 view:
     TT:
