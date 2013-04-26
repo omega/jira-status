@@ -41,10 +41,10 @@ div#header {
     box-shadow: none !important;
     cursor: pointer;
 }
-#timestamp.error {
+#timestamp.error .time {
     color: red !important;
 }
-#timestamp.stopped {
+#timestamp.stopped .time {
     color: yellow !important;
 }
 .calendar .topbar {

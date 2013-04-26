@@ -14,7 +14,7 @@
                 <td class="s10011"><a></a></td>
             </tr>
         </table>
-        <span>[% today.strftime('%H:%M') %]</span>
+        <span class="time">[% today.strftime('%H:%M') %]</span>
     </div>
     [%# First lets render releases in the past in a more condensed way %]
     <div class="history">
