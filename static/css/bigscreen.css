@@ -104,7 +104,7 @@ div#header {
     margin: 0 50px 0 0;
     min-height: 110px;
     padding: 0;
-    width: 450px;
+    width: 488px;
 }
 .calendar > .history .issues li {
     margin: 0.2em;
@@ -113,34 +113,37 @@ div#header {
 .calendar > .history .issues a {
     color: #CCCCCC !important;
     overflow: hidden;
-    width: 520px;
+}
+.calendar > .history .team {
+    right: 0px;
 }
 .calendar > .history ul.overdue {
     font-size: 1.5em;
     margin-right: 0;
-    width: 520px;
+    border-left: none;
 }
 .calendar > .history .overdue li {
     padding-left: 0.2em;
     position: relative;
-    margin-right: 100px;
 }
 .calendar > .history .overdue li a {
     overflow: hidden;
     white-space: nowrap;
-    width: 100%;
 }
 .calendar > .history .overdue li .summary {
     font-size: 0.8em;
+    margin-right: 100px;
 }
 .calendar > .history .overdue li.caption {
     display: block;
     height: 100%;
-    left: 500px;
-    margin-top: -0.1em;
+    left: 538px;
+    margin-top: -0;
     padding: 0;
     position: absolute;
     width: 50px;
+    border-right: 1px dotted #666666;
+    border-left: 1px dotted #666666;
 }
 .calendar > .history .overdue .caption span {
     font-size: 1em !important;
@@ -161,7 +164,7 @@ div#header {
     margin-right: 2px;
     padding: 1px 4px;
     position: absolute;
-    right: -100px;
+    right: 30px;
     text-decoration: none !important;
     text-shadow: -0.1em -0.1em 0 #464646;
     top: 3px;
