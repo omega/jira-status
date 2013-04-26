@@ -276,22 +276,22 @@ body {
             background-color: rgba(255,255,255,0.99);
         }
             .team-football {
-                background-image: url(https://bugs.startsiden.no/secure/attachment/24900/Fotball.gif);
+                background-image: url(/static/images/teams/Fotball.gif);
             }
             .team-video {
-                background-image: url(https://bugs.startsiden.no/secure/attachment/22668/Video.gif);
+                background-image: url(/static/images/teams/Video.gif);
             }
             .team-news {
-                background-image: url(https://bugs.startsiden.no/secure/attachment/22665/News.gif);
+                background-image: url(/static/images/teams/News.gif);
             }
             .team-startsiden {
-                background-image: url(https://bugs.startsiden.no/secure/attachment/22666/Startsiden.gif);
+                background-image: url(/static/images/teams/Startsiden.gif);
             }
             .team-navigation {
-                background-image: url(https://bugs.startsiden.no/secure/attachment/22664/Navigation.gif);
+                background-image: url(/static/images/teams/Navigation.gif);
             }
             .team-meetv {
-                background-image: url(https://bugs.startsiden.no/secure/attachment/22667/TV-guide.gif);
+                background-image: url(/static/images/teams/TV-guide.gif);
             }
         .project {
             display: none;
