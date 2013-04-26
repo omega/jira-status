@@ -60,7 +60,6 @@ class ::EventSource::JIRA extends ::EventSource {
         # Add a link
         $issue->{link} = $self->client->getServerInfo()->{baseUrl} . '/browse/' . $issue->{key};
 
-        use Data::Dump qw/dump/;
         # need to figure out the custom-fields, if we have some
         my $cf = $issue->{customFieldValues};
         foreach (@$cf) {
