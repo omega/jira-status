@@ -30,6 +30,7 @@ class ::Event::JIRA extends ::Event
     has 'resolution' => (is => 'ro', isa => 'Maybe[Num]', required => 0, predicate => 'resolved');
 
     has 'project' => (is => 'ro', isa => 'Maybe[Str]', required => 0);
+    has 'team' => (is => 'ro', isa => 'Str', required => 1);
 }
 
 class ::Event::Timed extends ::Event {

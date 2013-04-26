@@ -6,6 +6,7 @@
     >
         <strong>[% event.title %]</strong>
         [%- IF event.project != "RM" %] <span class="project">([% event.project %])</span>[% END -%]:
+        [%- IF event.team %]<span class="team team-[% event.team.lower %]"></span>[% END -%]
         [% IF event.has_summary %] <span class="summary">[% event.summary %]</span>[% END %]
     </a>
 </li>

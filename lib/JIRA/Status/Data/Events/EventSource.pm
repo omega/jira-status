@@ -28,7 +28,7 @@ class ::EventSource::JIRA extends ::EventSource {
         handles => [qw/set_filter_iterator getSavedFilters get_issue_types/],
     );
 
-    has 'project_field' => ( is => 'ro', isa => 'Int', required => 0);
+    has 'custom_fields' => ( is => 'ro', isa => 'HashRef', required => 0);
 
     has '_remote_statuses' => (
         is => 'ro',
@@ -60,14 +60,20 @@ class ::EventSource::JIRA extends ::EventSource {
         # Add a link
         $issue->{link} = $self->client->getServerInfo()->{baseUrl} . '/browse/' . $issue->{key};
 
-        # need to figure out the Project-field, if we have one
         use Data::Dump qw/dump/;
+        # need to figure out the custom-fields, if we have some
         my $cf = $issue->{customFieldValues};
-        my $f = $self->project_field;
         foreach (@$cf) {
-            if ($_->{customfieldId} =~ m/$f$/) {
-                my $p = $self->client->getProjectById($_->{values}->[0]);
-                $issue->{project} = $p->{key};
+            foreach my $key (keys %{ $self->custom_fields }) {
+                my $f = $self->custom_fields->{$key};
+                if ($_->{customfieldId} =~ m/$f$/) {
+                    if ($key eq 'project') {
+                        my $p = $self->client->getProjectById($_->{values}->[0]);
+                        $issue->{$key} = $p->{key};
+                    } else {
+                        $issue->{$key} = $_->{values}->[0];
+                    }
+                }
             }
         }
         return $issue;
@@ -159,6 +165,7 @@ class ::EventSource::JIRA extends ::EventSource {
                 resolution => $_->{resolution},
                 link => $_->{link},
                 project => $_->{project},
+                team => $_->{team},
             );
 
             push(@issues, $issue);
