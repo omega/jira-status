@@ -62,6 +62,8 @@ has 'config' => (
     builder => '_load_config',
     lazy => 1,
 );
+sub _get_default_configfile { return 'config.yml' };
+
 sub _load_config {    JIRA::Status::Config->new->config;     }
 
 sub get_config_from_file {  JIRA::Status::Config->new->config;            }
