@@ -1,6 +1,7 @@
 package JIRA::Status::Web::Types;
 use Template;
 use JIRA::Client;
+use IO::Socket::SSL;
 use MooseX::Types
     -declare => [qw/
         TemplateToolkit
@@ -23,7 +24,13 @@ coerce TemplateToolkit,
 class_type JIRAClient, { class => 'JIRA::Client' };
 coerce JIRAClient,
     from ArrayRef,
-    via { JIRA::Client->new(@$_); }
+    via {
+        my $c = JIRA::Client->new(@$_);
+        $c->{soap}->transport->ssl_opts(
+            SSL_verify_mode => SSL_VERIFY_PEER,
+        );
+        $c;
+    }
 ;
 class_type EventSource, { class => 'JIRA::Status::Data::Events::EventSource' };
 subtype ArrayOfEventSources, as ArrayRef[EventSource];
