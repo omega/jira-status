@@ -7,7 +7,7 @@ div.container {
     height: 100%;
 }
 div#bigscreen {
-    max-height: 1080px;
+    max-height: 1075px;
     overflow: hidden;
 }
 div#content {
