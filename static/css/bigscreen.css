@@ -6,6 +6,10 @@ body {
 div.container {
     height: 100%;
 }
+div#bigscreen {
+    max-height: 1080px;
+    overflow: hidden;
+}
 div#content {
     background-color: #2E3436;
     height: 100%;
