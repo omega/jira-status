@@ -43,6 +43,8 @@
             <ul class="overdue calendar_issuelist issues">
                 <li class="caption"><span>Overdue</span></li>
                 [% FOREACH event IN overdue %]
+                    <!-- [% event.datetime.truncate('to', 'day') %] - [% today.truncate('to', 'day') %] -->
+                    [% NEXT IF event.datetime.truncate('to', 'day') _ "" == today.truncate('to', 'day') _ "" %]
                     [% SET type = event.type;  PROCESS $type %]
                 [% END %]
             </ul>
