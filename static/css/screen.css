@@ -287,7 +287,7 @@ body {
             .team-startsiden {
                 background-image: url(/static/images/teams/Startsiden.gif);
             }
-            .team-navigation {
+            .team-navigation, .team-search {
                 background-image: url(/static/images/teams/Navigation.gif);
             }
             .team-meetv {
