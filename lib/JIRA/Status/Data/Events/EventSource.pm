@@ -4,13 +4,14 @@ namespace JIRA::Status::Data::Events;
 #PODNAME: JIRA::Status::Data::Events::EventSource
 
 class ::EventSource {
+    use Class::Load;
 
     has 'name' => (is => 'ro', isa => 'Str', required => 1);
 
     method instance($class: Str:$type, HashRef:$args) {
         my $source_class = 'JIRA::Status::Data::Events::EventSource::' . $type;
 
-        Class::MOP::load_class($source_class); # Just for safety
+        Class::Load::load_class($source_class); # Just for safety
         $source_class->new($args);
     }
 }

@@ -1,6 +1,7 @@
 package JIRA::Status::Web::Types;
 use Template;
 use JIRA::Client;
+use Class::Load;
 use MooseX::Types
     -declare => [qw/
         TemplateToolkit
@@ -52,7 +53,7 @@ class_type Db, { class => 'JIRA::Status::Data::Db' };
 coerce Db,
     from HashRef,
     via {
-        Class::MOP::load_class('JIRA::Status::Data::Db');
+        Class::Load::load_class('JIRA::Status::Data::Db');
         JIRA::Status::Data::Db->new($_);
     }
 ;

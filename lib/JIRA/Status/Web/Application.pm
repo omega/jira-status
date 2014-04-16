@@ -6,6 +6,7 @@ use JIRA::Status::Config;
 with 'JIRA::Status::Config::Role';
 
 use Path::Class::File;
+use Class::Load;
 use MooseX::Types::Path::Class;
 use JIRA::Status::Web::View::TT;
 use JIRA::Status::Web::Model::Events;
@@ -22,7 +23,7 @@ sub _build_view {
     my $self = shift;
     my $cfg = $self->config->{view};
     if (my $tt = $cfg->{'TT'}) {
-        Class::MOP::load_class("JIRA::Status::Web::View::TT");
+        Class::Load::load_class("JIRA::Status::Web::View::TT");
         return JIRA::Status::Web::View::TT->new(%$tt);
     }
 }
@@ -32,7 +33,7 @@ sub model {
     
     my $cfg = $self->config->{db};
     if ($cfg) {
-        Class::MOP::load_class("JIRA::Status::Web::Model::Events");
+        Class::Load::load_class("JIRA::Status::Web::Model::Events");
         return JIRA::Status::Web::Model::Events->new(db => $cfg);
     }
 }
