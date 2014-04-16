@@ -1,5 +1,6 @@
 use MooseX::Declare;
 namespace JIRA::Status::Data::Events;
+#PODNAME: JIRA::Status::Data::Events::EventSet
 
 class ::EventSet {
     use JIRA::Status::Web::Types qw/Event ArrayOfEvents/;

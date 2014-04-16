@@ -1,6 +1,8 @@
 use MooseX::Declare;
 namespace JIRA::Status::Data::Events;
 
+#PODNAME: JIRA::Status::Data::Events::EventSource
+
 class ::EventSource {
 
     has 'name' => (is => 'ro', isa => 'Str', required => 1);

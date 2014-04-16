@@ -1,6 +1,7 @@
 use MooseX::Declare;
 
 namespace JIRA::Status::Web::Model;
+#PODNAME: JIRA::Status::Web::Model::Events
 
 use JIRA::Status::Data::Db;
 

@@ -1,5 +1,6 @@
 use MooseX::Declare;
 namespace JIRA::Status::Data::Events;
+#PODNAME: JIRA::Status::Data::Events::Event
 
 class ::Event {
     # ABSTRACT: Handles all our event differences
