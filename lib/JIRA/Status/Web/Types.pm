@@ -1,6 +1,6 @@
 package JIRA::Status::Web::Types;
 use Template;
-use JIRA::Client;
+use JIRA::REST;
 use Class::Load;
 use MooseX::Types
     -declare => [qw/
@@ -21,10 +21,10 @@ coerce TemplateToolkit,
     from HashRef,
     via { Template->new(%$_); }
 ;
-class_type JIRAClient, { class => 'JIRA::Client' };
+class_type JIRAClient, { class => 'JIRA::REST' };
 coerce JIRAClient,
     from ArrayRef,
-    via { JIRA::Client->new(@$_); }
+    via { JIRA::REST->new(@$_); }
 ;
 class_type EventSource, { class => 'JIRA::Status::Data::Events::EventSource' };
 subtype ArrayOfEventSources, as ArrayRef[EventSource];
