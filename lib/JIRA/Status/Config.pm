@@ -3,7 +3,7 @@ package JIRA::Status::Config;
 use MooseX::Singleton;
 use Config::JFDI;
 use MooseX::Types::Path::Class;
-
+use Carp qw/croak/;
 
 has 'config' => (
     isa => 'HashRef',

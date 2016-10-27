@@ -18,7 +18,7 @@ class ::EventSource {
 
 class ::EventSource::JIRA extends ::EventSource {
     use DateTime;
-    use DateTime::Format::ISO8601;
+    use DateTime::Format::DateParse;
     use Data::Dump qw/dump/;
 
     use JIRA::Status::Web::Types qw/JIRAClient/;
@@ -28,7 +28,7 @@ class ::EventSource::JIRA extends ::EventSource {
         is => 'ro',
         isa => JIRAClient,
         coerce => 1,
-        handles => [qw/set_filter_iterator getSavedFilters get_issue_types/],
+        handles => [qw/set_search_iterator getSavedFilters get_issue_types/],
     );
 
     has 'custom_fields' => ( is => 'ro', isa => 'HashRef', required => 0);
@@ -42,7 +42,7 @@ class ::EventSource::JIRA extends ::EventSource {
     sub _build_remote_statuses {
         my $self = shift;
 
-        my $statuses = $self->client->getStatuses;
+        my $statuses = $self->client->GET('/status');
 
         my %statuses = map { ( $_->{id} => $_ ) } @$statuses;
 
@@ -53,29 +53,22 @@ class ::EventSource::JIRA extends ::EventSource {
         my $issue = $self->client->next_issue;
         return unless $issue;
         # Inflate some dates
-        $issue->{updated} = $self->_inflate_date($issue->{updated});
-        $issue->{duedate} = $self->_inflate_date($issue->{duedate}) if $issue->{duedate};
-        $issue->{status} = $self->get_status($issue->{status});
+        $issue->{fields}->{updated} = $self->_inflate_date($issue->{fields}->{updated});
+        $issue->{fields}->{duedate} = $self->_inflate_date($issue->{fields}->{duedate}) if $issue->{fields}->{duedate};
+        $issue->{fields}->{status} = $self->get_status($issue->{fields}->{status}->{id});
         my $threshold = DateTime->now()->subtract(days => 7);
-        if ($issue->{status}->{name} ne 'In development' and $threshold > $issue->{updated}) {
+        if ($issue->{fields}->{status}->{name} ne 'In development' and $threshold > $issue->{fields}->{updated}) {
             $issue->{overdue} = 1;
         }
         # Add a link
-        $issue->{link} = $self->client->getServerInfo()->{baseUrl} . '/browse/' . $issue->{key};
+        $issue->{fields}->{link} = "http://bugs.startsiden.no" . '/browse/' . $issue->{key};
 
         # need to figure out the custom-fields, if we have some
-        my $cf = $issue->{customFieldValues};
-        foreach (@$cf) {
-            foreach my $key (keys %{ $self->custom_fields }) {
-                my $f = $self->custom_fields->{$key};
-                if ($_->{customfieldId} =~ m/$f$/) {
-                    if ($key eq 'project') {
-                        my $p = $self->client->getProjectById($_->{values}->[0]);
-                        $issue->{$key} = $p->{key};
-                    } else {
-                        $issue->{$key} = $_->{values}->[0];
-                    }
-                }
+        my $i = $self->client->GET('/issue/' . $issue->{key}, { expand => 'editmeta' } );
+        foreach my $key (keys %{ $self->custom_fields }) {
+            my $id = $self->custom_fields->{$key};
+            if ($i->{fields}->{"customfield_$id"}) {
+                $issue->{fields}->{$key} = $i->{fields}->{"customfield_$id"}->{value};
             }
         }
         return $issue;
@@ -84,7 +77,7 @@ class ::EventSource::JIRA extends ::EventSource {
     sub _inflate_date {
         my ($self, $date) = @_;
         return unless $date;
-        $date = DateTime::Format::ISO8601->parse_datetime($date);
+        $date = DateTime::Format::DateParse->parse_datetime($date);
         $date->set_time_zone('Europe/Oslo');
         $date->set_time_zone('floating'); # We do this to make sure epoch value is correct in the other end.
 
@@ -105,7 +98,12 @@ class ::EventSource::JIRA extends ::EventSource {
     sub _get_issues {
         my ($self) = @_;
         my @issues;
-        $self->set_filter_iterator('Active releases');
+        $self->set_search_iterator({
+            jql => 'filter = "Active releases"',
+            maxResults => 16,
+            fields     => [ qw/summary status updated duedate resolution link project team assignee/  ],
+
+        });
         while (my $issue = $self->next_issue()) {
             push(@issues, $issue);
         }
@@ -115,7 +113,7 @@ class ::EventSource::JIRA extends ::EventSource {
     }
     sub get_active_releases {
         my ($self) = @_;
-        return [ $self->filter_issues(sub { !$_->{resolution} }) ];
+        return [ $self->filter_issues(sub { !$_->{fields}->{resolution} }) ];
     }
     sub get_active_releases_by_month {
         my ($self, $month) = @_;
@@ -125,19 +123,19 @@ class ::EventSource::JIRA extends ::EventSource {
 
         my $date_hash;
         foreach my $issue (@issues) {
-            next unless $issue->{duedate};
-            push(@{ $date_hash->{ $issue->{duedate}->ymd } }, $issue);
+            next unless $issue->{fields}->{duedate};
+            push(@{ $date_hash->{ $issue->{fields}->{duedate}->ymd } }, $issue);
         }
 
         return $date_hash;
     }
     sub get_recent_failed_releases {
         my ($self) = @_;
-        return [ $self->filter_issues(sub { $_->{resolution} and $_->{resolution} == 6 }) ];
+        return [ $self->filter_issues(sub { $_->{fields}->{resolution} and $_->{fields}->{resolution} == 6 }) ];
     }
     sub get_recent_successfull_releases {
         my ($self) = @_;
-        return [ $self->filter_issues(sub { $_->{resolution} and $_->{resolution} == 1 }) ];
+        return [ $self->filter_issues(sub { $_->{fields}->{resolution} and $_->{fields}->{resolution} == 1 }) ];
     }
 
     sub get_status {
@@ -156,18 +154,18 @@ class ::EventSource::JIRA extends ::EventSource {
     method events {
         my @issues;
         # XXX: This is to make sure we only return issues we can process
-        foreach ($self->filter_issues(sub { $_->{resolution} || $_->{duedate} })) {
+        foreach ($self->filter_issues(sub { $_->{fields}->{resolution} || $_->{fields}->{duedate} })) {
             my $issue = JIRA::Status::Data::Events::Event::JIRA->new(
                 title => $_->{key},
-                summary => $_->{summary},
+                summary => $_->{fields}->{summary},
                 # XXX: This should be $_->resolved, but not available :/
 #                datetime => $_->{resolution} ? $_->{updated} : $_->{duedate}, # use updated for resolved issue
-                datetime => $_->{duedate},
-                status => $_->{status}->{id},
-                resolution => $_->{resolution},
-                link => $_->{link},
-                project => $_->{project},
-                team => $_->{team},
+                datetime => $_->{fields}->{duedate},
+                status => $_->{fields}->{status}->{id},
+                resolution => $_->{fields}->{resolution}->{id},
+                link => $_->{fields}->{link},
+                project => $_->{fields}->{project}->{name},
+                team => $_->{fields}->{team},
             );
 
             push(@issues, $issue);

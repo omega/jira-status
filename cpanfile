@@ -1,0 +1,14 @@
+requires 'Plack';
+requires 'MooseX::Singleton';
+requires 'Config::JFDI';
+requires 'MooseX::ConfigFromFile';
+requires 'JIRA::REST';
+requires 'MooseX::Declare';
+requires 'MongoDB::Connection';
+requires 'MooseX::Types::DateTime';
+requires 'DateTime::Format::DateParse';
+requires 'Data::ICal::DateTime';
+requires 'Tatsumaki::Application';
+requires 'KiokuX::Model';
+requires 'KiokuDB::Backend::MongoDB';
+requires 'MooseX::App::Cmd';

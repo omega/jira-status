@@ -6,15 +6,17 @@ sources:
         args:
             name: jira
             client:
-                - 'https://bugs.yourcompany.alot'
-                - 'user'
+                - 'https://bugs.startsiden.no'
+                - 'builder'
                 - 'password'
-            project_field: 10070 # ID of the custom field holding the "Project" link
-    -
-        type: iCal
-        args:
-            name: operations
-            ics_url: 'http://some/ics/file'
+            custom_fields:
+                project: 10070
+                team: 10520
+#    -
+#        type: iCal
+#        args:
+#            name: operations
+#            ics_url: 'http://some/ics/file'
     -
         type: BlockedDays
         args:
@@ -29,4 +31,5 @@ view:
                 WRAPPER: 'inc/wrap.tt'
                 PRE_PROCESS: 'inc/preprocess.tt'
 db:
-    dsn: 'MongoDB:database_name=jirastatus;database_host=<YOURHOST>;collection_name=events'
+    dsn: 'MongoDB:database_name=jirastatus;database_host=mongodb;collection_name=events'
+    #dsn: 'dbi:SQLite:dbname=/home/andreas/systems/jira-status/foo'#
